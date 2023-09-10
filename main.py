@@ -1,20 +1,107 @@
-from email.policy import default
-from socket import timeout
-import speech_recognition as SpRe
+import subprocess
+from multiprocessing import Process, Queue
+import speech_recognition as sr
 import openai
-from gtts import gTTS
 import google.cloud.texttospeech as tts
 from pygame import mixer  # Load the popular external library
 import time
-import azure.cognitiveservices.speech as speechsdk
-import os, sys, datetime
+import datetime
 import win32print
-import urllib.parse
 from fpdf import FPDF  # for pdf creation
 import win32print
 import win32api
 import random
 from multiprocessing import Queue
+import PySimpleGUI as sg
+import pyaudio
+import numpy as np
+from scipy.interpolate import interp1d
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
+class AudioVisualizer:
+    def __init__(self, wave_form_queue):
+        self._VARS = {'window': False, 'stream': False, 'line': None, 'fig_agg': None}
+        self.screen_width, self.screen_height = sg.Window.get_screen_size()
+        self.screen_height = self.screen_height - 80
+        self.canvas_width = self.screen_width + 1200
+        self.canvas_height = self.screen_height - 60
+        self.init_window()
+        self.audio_queue = wave_form_queue
+        self.listening = True
+        self.init_mpl_figure()
+
+    def init_window(self):
+        AppFont = 'Any 16'
+        sg.theme('DarkBlack')
+        layout = [
+            [sg.Canvas(key='-CANVAS-', size=(self.canvas_width, self.canvas_height))],
+            [sg.ProgressBar(4000, orientation='h', size=(20, 20), key='-PROG-')],
+            [sg.Button('Listen', font=AppFont), sg.Button('Stop', font=AppFont, disabled=True),
+             sg.Button('Exit', font=AppFont)]
+        ]
+        self._VARS['window'] = sg.Window('    ', layout, no_titlebar=False, finalize=True,
+                                         location=(0, 0), size=(self.screen_width, self.screen_height),
+                                         keep_on_top=False, alpha_channel=0.8)
+
+    def init_mpl_figure(self):
+        self.fig = Figure(figsize=(self.canvas_width / 80, self.canvas_height / 100), dpi=100)
+        self.ax = self.fig.add_subplot(111)
+        self.fig.patch.set_facecolor('black')
+        self.ax.set_facecolor('black')
+        self.ax.axis('off')
+        canvas_elem = self._VARS['window']['-CANVAS-']
+        self.canvas = canvas_elem.TKCanvas
+        self._VARS['fig_agg'] = FigureCanvasTkAgg(self.fig, self.canvas)
+        self._VARS['fig_agg'].get_tk_widget().pack(side='left', fill='both', expand=1)
+
+    def callback(self, in_data, frame_count, time_info, status):
+        audio_data = np.frombuffer(in_data, dtype=np.int16)
+        self.ax.clear()
+        self.ax.axis('off')
+        self.ax.set_facecolor('black')
+        x = np.linspace(0, len(audio_data), len(audio_data))
+        f2 = interp1d(x, audio_data, kind='cubic')
+        xnew = np.linspace(0, len(audio_data), num=4096)
+        self.ax.plot(xnew, f2(xnew), 'g')
+        self.ax.set_ylim(-6000, 6000)
+        self._VARS['window']['-PROG-'].update(np.amax(audio_data))
+        self._VARS['fig_agg'].draw()
+        return (in_data, pyaudio.paContinue)
+    
+    def start_listening(self):
+        self.listening = True
+        self.listen()
+
+    def stop_listening(self):
+        self.listening = False
+        
+    def listen(self):
+        while self.listening:  # self.listening is a flag to control the listening loop
+            try:
+                audio_data = self.audio_queue.get()  # Adjust timeout as needed
+                self.callback(audio_data, None, None, None)
+            except self.audio_queue.empty():
+                continue
+
+    def event_loop(self):
+        while True:
+            event, values = self._VARS['window'].read()
+            if event == sg.WIN_CLOSED or event == 'Exit':
+                break
+            if event == 'Listen':
+                self.start_listening()
+                self.listen()
+                self._VARS['window']['Stop'].update(disabled=False)
+                self._VARS['window']['Listen'].update(disabled=True)
+            elif event == 'Stop':
+                self.stop_listening()
+                if self._VARS['stream']:
+                    self._VARS['stream'].stop_stream()
+                    self._VARS['stream'].close()
+                    self._VARS['window']['Stop'].update(disabled=True)
+                    self._VARS['window']['Listen'].update(disabled=False)
+        self._VARS['window'].close()
 
 class newPDF(FPDF):
     def __init__(self, orientation="P", unit="mm", format="A4"):
@@ -113,29 +200,21 @@ class newPDF(FPDF):
 
 test = 0
 # 語音轉文字
-def Mysecretary_listen():
-    recoginition = SpRe.Recognizer()
-    print('start')
-    if test != 1:
-        with SpRe.Microphone() as source:
-            recoginition.adjust_for_ambient_noise(source, duration = 1)
-            # source 聲音的來源:電腦麥克風
-            print('listening...')
-            try:
-                audioData = recoginition.listen(source, timeout = 2)
-                print('end')
-            except:
-                print(Exception)
-                print('發生錯誤，重聽')                    
-                audioData = recoginition.listen(source, timeout = 2)
-                print('end')
+def recognition(audio_queue, recognition_queue):
+    if test != 1:        
+        recognizer = sr.Recognizer()
+        audio_data = ''
         try:
-            # audioData 儲存聲源, language 指定語系
+            audio_data = audio_queue.get()
+        except audio_queue.empty():
+            return 'Queue is empty!'
+        try:
             print('recognizing...')
-            content = recoginition.recognize_google(audioData, language = 'zh-tw', timeout = 5)
-            return content
-        
-        except:
+            content = recognizer.recognize_google(audio_data, language='zh-tw')
+            print(content)
+            return content        
+        except Exception as e:
+            print(f"Recognition failed due to {e}")
             return '請再說一遍!!'
     else:
             return '你是誰'
@@ -169,9 +248,7 @@ def text_to_mp3(text: str, now):
         out.write(response.audio_content)
         print(f'Generated speech saved to "{filename}"')
 
-def main_process():
-    q1 = Queue()
-    q2 = Queue()
+def main_process(audio_queue, listen_queue, recognition_queue):
     now = datetime.datetime.now()
     now = now.strftime("%Y-%m-%d_%H%M%S")
     # 開始進行語音辨識
@@ -181,12 +258,19 @@ def main_process():
     mixer.music.play()
     while mixer.music.get_busy():  # wait for music to finish playing
         time.sleep(1)
-    question = Mysecretary_listen()
+    listen_queue.put('audio listen start')
+    question = ''
+    print("begin question")
+    question = recognition(audio_queue, recognition_queue)
     retry_count = 0
     while (question == "請再說一遍!!" and retry_count < 2):
         print('失敗，請再說一遍。')
         retry_count = retry_count + 1
-        question = Mysecretary_listen()
+        listen_queue.put('audio listen start')
+        while not recognition_queue.empty():
+            recognition_queue.get()
+            question = recognition(audio_queue, recognition_queue)
+            break
     if (question == "請再說一遍!!"):
         # 處理一直失敗的狀況
         question = "給我一些胡言亂語"
@@ -277,6 +361,52 @@ def main_process():
         0,
     )
 
+def run_script(script):
+    proc = subprocess.Popen(['python', script])
+    proc.wait()
 
-while(1):
-    main_process()
+def microphone_manager(audio_queue, listen_queue, recognition_queue, wave_form_queue):
+    recognizer = sr.Recognizer()
+    microphone = sr.Microphone()
+    while True:
+        while not listen_queue.empty():
+            print("Listening")
+            with microphone as source:
+                recognizer.adjust_for_ambient_noise(source, duration = 1)
+                audio_data = recognizer.listen(source, timeout = 2)
+            # Put the captured audio_data into the shared queue
+            audio_queue.put(audio_data)
+            wave_form_queue.put(audio_data)
+            print("Listening finished.")
+            recognition_queue.put('audio recognition start')
+
+def WaveForm(wave_form_queue):
+    app = AudioVisualizer(wave_form_queue)
+    app.event_loop()
+
+
+if __name__ == "__main__":
+    audio_queue = Queue()
+    listen_queue = Queue()
+    recognition_queue = Queue()
+    wave_form_queue = Queue()
+
+    script2 = 'video pygame.py'
+
+    p2 = Process(target=run_script, args=(script2))
+    WaveFormProcess = Process(target=WaveForm, args=(wave_form_queue,))
+    consumer_process = Process(target=main_process, args=(audio_queue, listen_queue, recognition_queue))
+    producer_process = Process(target=microphone_manager, args=(audio_queue, listen_queue, recognition_queue, wave_form_queue))
+
+    consumer_process.start()
+    producer_process.start()
+    p2.start()
+    WaveFormProcess.start()
+
+    consumer_process.join()
+    producer_process.join()
+    p2.join()
+    WaveFormProcess.join()
+
+    while not queue.empty():
+        print(queue.get())

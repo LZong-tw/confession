@@ -3,13 +3,15 @@ import pyaudio
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
+from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 # Initialize variables and objects
 _VARS = {'window': False, 'stream': False, 'line': None, 'fig_agg': None}
 screen_width, screen_height = sg.Window.get_screen_size()
-canvas_width = int(screen_width)
-canvas_height = int(screen_height)
+screen_height = screen_height - 80
+canvas_width = screen_width + 1200
+canvas_height = screen_height - 60
 
 # Initialize PySimpleGUI
 AppFont = 'Any 16'
@@ -19,17 +21,20 @@ layout = [
     [sg.ProgressBar(4000, orientation='h', size=(20, 20), key='-PROG-')],
     [sg.Button('Listen', font=AppFont), sg.Button('Stop', font=AppFont, disabled=True), sg.Button('Exit', font=AppFont)]
 ]
-_VARS['window'] = sg.Window('    ', layout, no_titlebar=True, finalize=True, location=(0, 0), size=(screen_width, screen_height), keep_on_top=True)
+_VARS['window'] = sg.Window('    ', layout, no_titlebar=False, finalize=True, location=(0, 0), size=(screen_width, screen_height), keep_on_top=False, alpha_channel=0.8)
 
 # Initialize matplotlib figure and Pyaudio
-fig, ax = plt.subplots(figsize=(canvas_width//100, canvas_height//100))
+# fig, ax = plt.subplots(figsize=(canvas_width/80, canvas_height/110), dpi=100)
+fig = Figure(figsize=(canvas_width / 80, canvas_height / 100), dpi=100)
+ax = fig.add_subplot(111) 
 fig.patch.set_facecolor('black')
 ax.set_facecolor('black')
+ax.axis('off')
 
 canvas_elem = _VARS['window']['-CANVAS-']
 canvas = canvas_elem.TKCanvas
 _VARS['fig_agg'] = FigureCanvasTkAgg(fig, canvas)
-_VARS['fig_agg'].get_tk_widget().pack(side='top', fill='both', expand=1)
+_VARS['fig_agg'].get_tk_widget().pack(side='left', fill='both', expand=1)
 
 # Initialize Pyaudio
 CHUNK = 1024
@@ -46,6 +51,7 @@ def callback(in_data, frame_count, time_info, status):
     return (in_data, pyaudio.paContinue)"""
     audio_data = np.frombuffer(in_data, dtype=np.int16)
     ax.clear()
+    ax.axis('off')
     ax.set_facecolor('black')
     x = np.linspace(0, len(audio_data), len(audio_data))
     f2 = interp1d(x, audio_data, kind='cubic')

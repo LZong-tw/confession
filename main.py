@@ -36,13 +36,13 @@ class AudioVisualizer:
         sg.theme('DarkBlack')
         layout = [
             [sg.Canvas(key='-CANVAS-', size=(self.canvas_width, self.canvas_height))],
-            [sg.ProgressBar(4000, orientation='h', size=(20, 20), key='-PROG-')],
+            [sg.ProgressBar(3000, orientation='h', size=(20, 20), key='-PROG-')],
             [sg.Button('Listen', font=AppFont), sg.Button('Stop', font=AppFont, disabled=True),
              sg.Button('Exit', font=AppFont)]
         ]
         self._VARS['window'] = sg.Window('    ', layout, no_titlebar=False, finalize=True,
                                          location=(0, 0), size=(self.screen_width, self.screen_height),
-                                         keep_on_top=False, alpha_channel=0.8)
+                                         keep_on_top=False, alpha_channel=0.6)
 
     def init_mpl_figure(self):
         self.fig = Figure(figsize=(self.canvas_width / 80, self.canvas_height / 100), dpi=100)
@@ -56,18 +56,24 @@ class AudioVisualizer:
         self._VARS['fig_agg'].get_tk_widget().pack(side='left', fill='both', expand=1)
 
     def callback(self, in_data, frame_count, time_info, status):
-        audio_data = np.frombuffer(in_data, dtype=np.int16)
-        self.ax.clear()
+        audio_data = np.frombuffer(in_data.frame_data, dtype=np.int16)
+        # audio_data = np.frombuffer(in_data, dtype=np.int16)
+        # self.ax.clear()
         self.ax.axis('off')
         self.ax.set_facecolor('black')
         x = np.linspace(0, len(audio_data), len(audio_data))
         f2 = interp1d(x, audio_data, kind='cubic')
         xnew = np.linspace(0, len(audio_data), num=4096)
-        self.ax.plot(xnew, f2(xnew), 'g')
+        
+        if self._VARS.get('line') is None:
+            self._VARS['line'], = self.ax.plot(xnew, f2(xnew), 'g')  # initial plot
+        else:
+            self._VARS['line'].set_ydata(f2(xnew))  # update only the y-data points
+
         self.ax.set_ylim(-6000, 6000)
         self._VARS['window']['-PROG-'].update(np.amax(audio_data))
         self._VARS['fig_agg'].draw()
-        return (in_data, pyaudio.paContinue)
+        return (in_data)
     
     def start_listening(self):
         self.listening = True
@@ -81,7 +87,10 @@ class AudioVisualizer:
             try:
                 audio_data = self.audio_queue.get()  # Adjust timeout as needed
                 self.callback(audio_data, None, None, None)
-            except self.audio_queue.empty():
+            except Exception as e:
+                print("listening() exception")
+                print(str(e))
+            if self.audio_queue.empty():
                 continue
 
     def event_loop(self):
@@ -214,7 +223,7 @@ def recognition(audio_queue, recognition_queue):
             print(content)
             return content        
         except Exception as e:
-            print(f"Recognition failed due to {e}")
+            print(f"Recognition failed due to {str(e)}")
             return '請再說一遍!!'
     else:
             return '你是誰'
@@ -380,6 +389,47 @@ def microphone_manager(audio_queue, listen_queue, recognition_queue, wave_form_q
             print("Listening finished.")
             recognition_queue.put('audio recognition start')
 
+def microphone_manager_pyaudio(audio_queue, listen_queue, recognition_queue, wave_form_queue):
+    p = pyaudio.PyAudio()
+    
+    RATE = 44100  # sample rate
+    CHUNK = 1024  # buffer size
+    CHANNELS = 1
+    
+    recognizer = sr.Recognizer()
+    
+    stream = p.open(format=pyaudio.paInt16,
+                    channels=CHANNELS,
+                    rate=RATE,
+                    input=True,
+                    frames_per_buffer=CHUNK)
+    
+    while True:
+        while not listen_queue.empty():
+            print("Listening")
+            
+            audio_frames = []
+            
+            for i in range(0, int(RATE / CHUNK * 2)):  # 2 seconds of audio
+                data = stream.read(CHUNK)
+                audio_frames.append(data)
+                np_data = np.frombuffer(data, dtype=np.int16)  # convert to numpy array
+                wave_form_queue.put(np_data)  # Send for visualization
+                
+            audio_data = b''.join(audio_frames)
+            
+            audio_queue.put(audio_data)  # Put the raw audio data in the queue
+            
+            # Converting the audio_data to an AudioData object for the recognizer
+            audio_data_object = sr.AudioData(audio_data, RATE, 2)
+            
+            print("Listening finished.")
+            recognition_queue.put('audio recognition start')
+            
+    stream.stop_stream()
+    stream.close()
+    p.terminate()
+
 def WaveForm(wave_form_queue):
     app = AudioVisualizer(wave_form_queue)
     app.event_loop()
@@ -393,20 +443,20 @@ if __name__ == "__main__":
 
     script2 = 'video pygame.py'
 
-    p2 = Process(target=run_script, args=(script2))
+    p2 = Process(target=run_script, args=(script2,))
     WaveFormProcess = Process(target=WaveForm, args=(wave_form_queue,))
     consumer_process = Process(target=main_process, args=(audio_queue, listen_queue, recognition_queue))
-    producer_process = Process(target=microphone_manager, args=(audio_queue, listen_queue, recognition_queue, wave_form_queue))
+    producer_process = Process(target=microphone_manager_pyaudio, args=(audio_queue, listen_queue, recognition_queue, wave_form_queue))
 
     consumer_process.start()
     producer_process.start()
-    p2.start()
     WaveFormProcess.start()
+    p2.start()
 
     consumer_process.join()
     producer_process.join()
-    p2.join()
     WaveFormProcess.join()
+    p2.join()
 
     while not queue.empty():
         print(queue.get())

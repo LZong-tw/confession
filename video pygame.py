@@ -11,7 +11,7 @@ screen_width, screen_height = sg.Window.get_screen_size()
 size = (screen_width, screen_height)
 screen = pygame.display.set_mode(size)
 
-video = cv2.VideoCapture('背景影片/the_bg.mp4')
+video = cv2.VideoCapture('assets/背景影片/the_bg.mp4')
 frame_width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
 frame_height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
 

@@ -120,7 +120,7 @@ def Mysecretary_listen():
                 try:
                     # source 聲音的來源:電腦麥克風
                     print('start listening...')
-                    audioData = recoginition.listen(source, timeout = 2)
+                    audioData = recoginition.listen(source, timeout = 3)
                     print('end')
                     # audioData 儲存聲源, language 指定語系
                     print('recognizing...')
@@ -156,7 +156,7 @@ def text_to_mp3(text: str, now):
         audio_config=audio_config,
     )
 
-    filename = f"{now}.mp3"
+    filename = f"storage/{now}.mp3"
     with open(filename, "wb") as out:
         out.write(response.audio_content)
         print(f'Generated speech saved to "{filename}"')
@@ -165,7 +165,7 @@ def main_process():
     now = datetime.datetime.now()
     now = now.strftime("%Y-%m-%d_%H%M%S")
     mixer.init(buffer = 8192)
-    mixer.music.load('歡迎詞錄音/synthesis.wav')
+    mixer.music.load('assets/歡迎詞錄音/synthesis.wav')
     mixer.music.play()
     while mixer.music.get_busy():  # wait for music to finish playing
         time.sleep(1)
@@ -179,7 +179,7 @@ def main_process():
     if (question == "請再說一遍!!"):
         # 處理一直失敗的狀況
         question = "給我一些胡言亂語"
-    filename = f"{now}問答.txt"
+    filename = f"storage/{now}問答.txt"
     with open(filename, "w", encoding="utf-8") as out:
         out.write("問：" + question + "\n")
     print(f'Asking log saved to "{filename}"')
@@ -218,14 +218,14 @@ def main_process():
     #GCP TTS
     text_to_mp3(theWords, now)
 
-    filename = f"{now}問答.txt"
+    filename = f"storage/{now}問答.txt"
     with open(filename, "a", encoding="utf-8") as out:
         out.write("答：" + theWords)
     print(f'Response log saved to "{filename}"')
 
     # 播放語音
     mixer.init(buffer = 8192)
-    mixer.music.load(now + '.mp3')
+    mixer.music.load('storage/' + now + '.mp3')
     # mixer.music.load(now + '.wav')
     mixer.music.play()
     while mixer.music.get_busy():  # wait for music to finish playing
@@ -236,7 +236,7 @@ def main_process():
     pdf = newPDF("P", "pt")  # P(ortrait), points size ref, Letter-size paper
     pdf.add_page()  # add a blank page to start
     pdf.add_font("msjh", "", "微軟正黑體.ttf", 1)
-    pdf.image("top.png", x=None, y=None, w=50, h=15, type="", link="")
+    pdf.image("assets/top.png", x=None, y=None, w=50, h=15, type="", link="")
     pdf.set_font("msjh", size=2)  # optional here, but useful if most text is plain
     pdf.write(h=2, txt="\n")
     hello_string = theWords
@@ -244,9 +244,9 @@ def main_process():
     pdf.write(h=14, txt=hello_string)
     pdf.set_font("msjh", size=10)
     pdf.write(h=10, txt="\n")
-    pdf.image("bottom.png", x=None, y=None, w=50, h=15, type="", link="")
+    pdf.image("assets/bottom.png", x=None, y=None, w=50, h=15, type="", link="")
     # output the created page(s) as a PDF file
-    pdf_filename = "hello_world1.pdf"
+    pdf_filename = "storage/hello_world1.pdf"
     pdf.output(pdf_filename)
     # finally, print the PDF file to the printer
     GHOSTSCRIPT_PATH = "C:\\Program Files\\gs\\gs10.01.1\\bin\\gswin64.exe"
@@ -263,7 +263,7 @@ def main_process():
         + GHOSTSCRIPT_PATH
         + '" -printer "'
         + currentprinter
-        + '" "hello_world1.pdf"',
+        + '" "storage/hello_world1.pdf"',
         ".",
         0,
     )

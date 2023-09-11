@@ -124,8 +124,8 @@ def Mysecretary_listen():
             try:
                 audioData = recoginition.listen(source, timeout = 2)
                 print('end')
-            except:
-                print(Exception)
+            except Exception as e:
+                print(str(e))
                 print('發生錯誤，重聽')                    
                 audioData = recoginition.listen(source, timeout = 2)
                 print('end')

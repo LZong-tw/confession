@@ -257,7 +257,8 @@ def text_to_mp3(text: str, now):
         out.write(response.audio_content)
         print(f'Generated speech saved to "{filename}"')
 
-def main_process(audio_queue, listen_queue, recognition_queue):
+def main_process(audio_queue, listen_queue, recognition_queue, stop_listen_queue):
+    stop_listen_queue.put('123123123')
     now = datetime.datetime.now()
     now = now.strftime("%Y-%m-%d_%H%M%S")
     # 開始進行語音辨識
@@ -267,22 +268,26 @@ def main_process(audio_queue, listen_queue, recognition_queue):
     mixer.music.play()
     while mixer.music.get_busy():  # wait for music to finish playing
         time.sleep(1)
+    stop_listen_queue.get()
     listen_queue.put('audio listen start')
     question = ''
     print("begin question")
     question = recognition(audio_queue, recognition_queue)
+    stop_listen_queue.put("123123123")
     retry_count = 0
     while (question == "請再說一遍!!" and retry_count < 2):
         print('失敗，請再說一遍。')
         retry_count = retry_count + 1
+        stop_listen_queue.get()
         listen_queue.put('audio listen start')
         while not recognition_queue.empty():
             recognition_queue.get()
             question = recognition(audio_queue, recognition_queue)
             break
+        stop_listen_queue.get()
     if (question == "請再說一遍!!"):
         # 處理一直失敗的狀況
-        question = "給我一些胡言亂語"
+        question = "給我一些工作、勞動方面的胡言亂語"
     filename = f"{now}問答.txt"
     with open(filename, "w", encoding="utf-8") as out:
         out.write("問：" + question + "\n")
@@ -374,61 +379,24 @@ def run_script(script):
     proc = subprocess.Popen(['python', script])
     proc.wait()
 
-def microphone_manager(audio_queue, listen_queue, recognition_queue, wave_form_queue):
+def microphone_manager(audio_queue, listen_queue, recognition_queue, wave_form_queue, stop_listen_queue):
     recognizer = sr.Recognizer()
-    microphone = sr.Microphone()
+    microphone = sr.Microphone(device_index=2)
     while True:
-        while not listen_queue.empty():
+        while not listen_queue.empty() and stop_listen_queue.empty():
             print("Listening")
             with microphone as source:
                 recognizer.adjust_for_ambient_noise(source, duration = 1)
-                audio_data = recognizer.listen(source, timeout = 2)
-            # Put the captured audio_data into the shared queue
-            audio_queue.put(audio_data)
-            wave_form_queue.put(audio_data)
-            print("Listening finished.")
-            recognition_queue.put('audio recognition start')
-
-def microphone_manager_pyaudio(audio_queue, listen_queue, recognition_queue, wave_form_queue):
-    p = pyaudio.PyAudio()
-    
-    RATE = 44100  # sample rate
-    CHUNK = 1024  # buffer size
-    CHANNELS = 1
-    
-    recognizer = sr.Recognizer()
-    
-    stream = p.open(format=pyaudio.paInt16,
-                    channels=CHANNELS,
-                    rate=RATE,
-                    input=True,
-                    frames_per_buffer=CHUNK)
-    
-    while True:
-        while not listen_queue.empty():
-            print("Listening")
-            
-            audio_frames = []
-            
-            for i in range(0, int(RATE / CHUNK * 2)):  # 2 seconds of audio
-                data = stream.read(CHUNK)
-                audio_frames.append(data)
-                np_data = np.frombuffer(data, dtype=np.int16)  # convert to numpy array
-                wave_form_queue.put(np_data)  # Send for visualization
-                
-            audio_data = b''.join(audio_frames)
-            
-            audio_queue.put(audio_data)  # Put the raw audio data in the queue
-            
-            # Converting the audio_data to an AudioData object for the recognizer
-            audio_data_object = sr.AudioData(audio_data, RATE, 2)
-            
-            print("Listening finished.")
-            recognition_queue.put('audio recognition start')
-            
-    stream.stop_stream()
-    stream.close()
-    p.terminate()
+                try:
+                    audio_data = recognizer.listen(source, timeout = 3)
+                    # Put the captured audio_data into the shared queue
+                    audio_queue.put(audio_data)
+                    wave_form_queue.put(audio_data)
+                    print("Listening finished.")
+                    recognition_queue.put('audio recognition start')
+                except sr.WaitTimeoutError:
+                    print("Timeout: No speech detected.")
+                    audio_data = None
 
 def WaveForm(wave_form_queue):
     app = AudioVisualizer(wave_form_queue)
@@ -440,22 +408,23 @@ if __name__ == "__main__":
     listen_queue = Queue()
     recognition_queue = Queue()
     wave_form_queue = Queue()
+    stop_listen_queue = Queue()
 
     script2 = 'video pygame.py'
 
     p2 = Process(target=run_script, args=(script2,))
-    WaveFormProcess = Process(target=WaveForm, args=(wave_form_queue,))
-    consumer_process = Process(target=main_process, args=(audio_queue, listen_queue, recognition_queue))
-    producer_process = Process(target=microphone_manager_pyaudio, args=(audio_queue, listen_queue, recognition_queue, wave_form_queue))
+    # WaveFormProcess = Process(target=WaveForm, args=(wave_form_queue,))
+    consumer_process = Process(target=main_process, args=(audio_queue, listen_queue, recognition_queue, stop_listen_queue))
+    producer_process = Process(target=microphone_manager, args=(audio_queue, listen_queue, recognition_queue, wave_form_queue, stop_listen_queue))
 
     consumer_process.start()
     producer_process.start()
-    WaveFormProcess.start()
+    # WaveFormProcess.start()
     p2.start()
 
     consumer_process.join()
     producer_process.join()
-    WaveFormProcess.join()
+    # WaveFormProcess.join()
     p2.join()
 
     while not queue.empty():

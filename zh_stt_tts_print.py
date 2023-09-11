@@ -117,19 +117,18 @@ def Mysecretary_listen():
         if test != 1:
             with SpRe.Microphone(device_index=1) as source:
                 recoginition.adjust_for_ambient_noise(source, duration = 1)
-                # source 聲音的來源:電腦麥克風
-                print('start listening...')
-                audioData = recoginition.listen(source, timeout = 2)
-                print('end')
-            try:
-                # audioData 儲存聲源, language 指定語系
-                print('recognizing...')
-                content = recoginition.recognize_google(audioData, language = 'zh-tw')
-                return content
-            
-            except Exception as e:
-                print(str(e))
-                return '請再說一遍!!'
+                try:
+                    # source 聲音的來源:電腦麥克風
+                    print('start listening...')
+                    audioData = recoginition.listen(source, timeout = 2)
+                    print('end')
+                    # audioData 儲存聲源, language 指定語系
+                    print('recognizing...')
+                    content = recoginition.recognize_google(audioData, language = 'zh-tw')
+                    return content            
+                except Exception as e:
+                    print(str(e))
+                    return '請再說一遍!!'
         else:
              return '你是誰'
         

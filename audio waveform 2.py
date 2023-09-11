@@ -67,6 +67,7 @@ def listen():
                                channels=1,
                                rate=RATE,
                                input=True,
+                               input_device_index=0,
                                frames_per_buffer=CHUNK,
                                stream_callback=callback)
     _VARS['stream'].start_stream()

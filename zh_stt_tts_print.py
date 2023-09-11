@@ -14,7 +14,6 @@ from fpdf import FPDF  # for pdf creation
 import win32print
 import win32api
 import random
-from multiprocessing import Queue
 
 class newPDF(FPDF):
     def __init__(self, orientation="P", unit="mm", format="A4"):
@@ -114,31 +113,25 @@ class newPDF(FPDF):
 test = 0
 # 語音轉文字
 def Mysecretary_listen():
-    recoginition = SpRe.Recognizer()
-    print('start')
-    if test != 1:
-        with SpRe.Microphone() as source:
-            recoginition.adjust_for_ambient_noise(source, duration = 1)
-            # source 聲音的來源:電腦麥克風
-            print('listening...')
-            try:
+        recoginition = SpRe.Recognizer()
+        if test != 1:
+            with SpRe.Microphone(device_index=1) as source:
+                recoginition.adjust_for_ambient_noise(source, duration = 1)
+                # source 聲音的來源:電腦麥克風
+                print('start listening...')
                 audioData = recoginition.listen(source, timeout = 2)
                 print('end')
+            try:
+                # audioData 儲存聲源, language 指定語系
+                print('recognizing...')
+                content = recoginition.recognize_google(audioData, language = 'zh-tw')
+                return content
+            
             except Exception as e:
                 print(str(e))
-                print('發生錯誤，重聽')                    
-                audioData = recoginition.listen(source, timeout = 2)
-                print('end')
-        try:
-            # audioData 儲存聲源, language 指定語系
-            print('recognizing...')
-            content = recoginition.recognize_google(audioData, language = 'zh-tw', timeout = 5)
-            return content
-        
-        except:
-            return '請再說一遍!!'
-    else:
-            return '你是誰'
+                return '請再說一遍!!'
+        else:
+             return '你是誰'
         
 def text_to_mp3(text: str, now):
     voice_name = "cmn-TW-Wavenet-A"
@@ -170,17 +163,14 @@ def text_to_mp3(text: str, now):
         print(f'Generated speech saved to "{filename}"')
 
 def main_process():
-    q1 = Queue()
-    q2 = Queue()
     now = datetime.datetime.now()
     now = now.strftime("%Y-%m-%d_%H%M%S")
-    # 開始進行語音辨識
-    # 播放語音
     mixer.init(buffer = 8192)
     mixer.music.load('歡迎詞錄音/synthesis.wav')
     mixer.music.play()
     while mixer.music.get_busy():  # wait for music to finish playing
         time.sleep(1)
+    # 開始進行語音辨識
     question = Mysecretary_listen()
     retry_count = 0
     while (question == "請再說一遍!!" and retry_count < 2):
@@ -225,6 +215,7 @@ def main_process():
     print("答：" + theWords)
 
     # 進行文字轉語音
+    #Google Text to Speech
     #GCP TTS
     text_to_mp3(theWords, now)
 
@@ -236,6 +227,7 @@ def main_process():
     # 播放語音
     mixer.init(buffer = 8192)
     mixer.music.load(now + '.mp3')
+    # mixer.music.load(now + '.wav')
     mixer.music.play()
     while mixer.music.get_busy():  # wait for music to finish playing
         time.sleep(1)

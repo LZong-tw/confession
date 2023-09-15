@@ -1,8 +1,8 @@
 import time
 import sys
 
-stop_queue = eval(sys.argv[1])
-recognized_data_queue = eval(sys.argv[2])
+stop_queue = (sys.argv[1])
+recognized_data_queue = (sys.argv[2])
 
 while True:
     while recognized_data_queue.empty():

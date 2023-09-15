@@ -15,12 +15,12 @@ import win32print
 import win32api
 import random
 
-screen_queue = eval(sys.argv[1])
-reply_queue = eval(sys.argv[2])
-stop_queue = eval(sys.argv[3])
-print_data_queue = eval(sys.argv[4])
-filename_queue = eval(sys.argv[5])
-voice_count_queue = eval(sys.argv[6])
+screen_queue = (sys.argv[1])
+reply_queue = (sys.argv[2])
+stop_queue = (sys.argv[3])
+print_data_queue = (sys.argv[4])
+filename_queue = (sys.argv[5])
+voice_count_queue = (sys.argv[6])
 
 while True:
     while not reply_queue.empty() or not stop_queue.empty():

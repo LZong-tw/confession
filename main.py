@@ -1,4 +1,3 @@
-from my_module import *
 import subprocess
 import multiprocessing
 

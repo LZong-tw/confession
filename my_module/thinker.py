@@ -2,8 +2,8 @@ import openai
 import sys
 import random
 
-reply_queue = eval(sys.argv[1])
-recognized_data_queue = eval(sys.argv[2])
+reply_queue = (sys.argv[1])
+recognized_data_queue = (sys.argv[2])
 
 while True:
     while not recognized_data_queue.empty():

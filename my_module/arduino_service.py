@@ -7,8 +7,8 @@ import sys
 ser = serial.Serial('COM5', 9600)
 # Change '/dev/ttyUSB0' to the correct port on your system
 
-door_queue_for_screen = eval(sys.argv[1])
-door_queue_for_audio = eval(sys.argv[2])
+door_queue_for_screen = (sys.argv[1])
+door_queue_for_audio = (sys.argv[2])
 
 while True:
     # Read data from the Arduino

@@ -1,5 +1,7 @@
 import time
 import serial
+import sys
+
 
 # Define the serial port and baud rate
 ser = serial.Serial('COM5', 9600)

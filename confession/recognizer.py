@@ -1,11 +1,11 @@
 import sys
 import datetime
 
-listen_queue = (sys.argv[1])
-audio_resource_queue = (sys.argv[2])
-recognized_data_queue = (sys.argv[3])
-recognition_queue = (sys.argv[4])
-filename_queue = (sys.argv[5])
+listen_queue = eval(sys.argv[1]).strip('"')
+audio_resource_queue = eval(sys.argv[2]).strip('"')
+recognized_data_queue = eval(sys.argv[3]).strip('"')
+recognition_queue = eval(sys.argv[4]).strip('"')
+filename_queue = eval(sys.argv[5]).strip('"')
 while True:
     while not listen_queue.empty():
         listen_queue.get()

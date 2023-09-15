@@ -4,8 +4,8 @@ from fpdf import FPDF  # for pdf creation
 import win32print
 import win32api
 
-print_data_queue = (sys.argv[1])
-voice_count_queue = (sys.argv[2])
+print_data_queue = eval(sys.argv[1]).strip('"')
+voice_count_queue = eval(sys.argv[2]).strip('"')
 class newPDF(FPDF):
     def __init__(self, orientation="P", unit="mm", format="A4"):
         # Some checks

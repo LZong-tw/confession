@@ -2,7 +2,7 @@ import sys
 import time
 from pygame import mixer  # Load the popular external library
 
-welcome_queue = (sys.argv[1])
+welcome_queue = eval(sys.argv[1])
 
 while True:
     while not welcome_queue.empty():

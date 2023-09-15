@@ -2,9 +2,9 @@ import pygame
 import sys
 
 
-door_queue_for_screen = (sys.argv[1])
-screen_queue = (sys.argv[2])
-welcome_queue = (sys.argv[3])
+door_queue_for_screen = eval(sys.argv[1]).strip('"')
+screen_queue = eval(sys.argv[2]).strip('"')
+welcome_queue = eval(sys.argv[3]).strip('"')
 
 
 def screen_on(screen, fade_duration=3000):

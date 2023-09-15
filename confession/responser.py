@@ -1,26 +1,16 @@
 from email.policy import default
-from socket import timeout
-import speech_recognition as SpRe
-import openai
-from gtts import gTTS
 import google.cloud.texttospeech as tts
 from pygame import mixer  # Load the popular external library
 import time
-import azure.cognitiveservices.speech as speechsdk
-import os, sys, datetime
-import win32print
-import urllib.parse
-from fpdf import FPDF  # for pdf creation
-import win32print
-import win32api
+import sys
 import random
 
-screen_queue = (sys.argv[1])
-reply_queue = (sys.argv[2])
-stop_queue = (sys.argv[3])
-print_data_queue = (sys.argv[4])
-filename_queue = (sys.argv[5])
-voice_count_queue = (sys.argv[6])
+screen_queue = eval(sys.argv[1]).strip('"')
+reply_queue = eval(sys.argv[2]).strip('"')
+stop_queue = eval(sys.argv[3]).strip('"')
+print_data_queue = eval(sys.argv[4]).strip('"')
+filename_queue = eval(sys.argv[5]).strip('"')
+voice_count_queue = eval(sys.argv[6]).strip('"')
 
 while True:
     while not reply_queue.empty() or not stop_queue.empty():

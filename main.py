@@ -18,21 +18,21 @@ voice_count_queue = multiprocessing.Queue()
 welcome_queue = multiprocessing.Queue()
 
 # Launch Module 1 in a separate process
-arduino_service = subprocess.Popen(['python', 'arduino_service.py', [
+arduino_service = subprocess.Popen(['python', 'my_module/arduino_service.py', [
     str(door_queue_for_screen),
     str(door_queue_for_audio),
 ]])
 
 # Launch Module 2 in a separate process
-screen_manager = subprocess.Popen(['python', 'screen_manager.py', [
+screen_manager = subprocess.Popen(['python', 'my_module/screen_manager.py', [
     str(door_queue_for_screen),
     str(screen_queue),
     str(welcome_queue),
 ]])
 
-welcome = subprocess.Popen(['python', 'welcome.py', str(welcome_queue)])
+welcome = subprocess.Popen(['python', 'my_module/welcome.py', str(welcome_queue)])
 
-responser = subprocess.Popen(['python', 'responser.py', [
+responser = subprocess.Popen(['python', 'my_module/responser.py', [
     str(screen_queue),
     str(reply_queue),
     str(stop_queue),
@@ -41,23 +41,23 @@ responser = subprocess.Popen(['python', 'responser.py', [
     str(voice_count_queue),
 ]])
 
-thinker = subprocess.Popen(['python', 'thinker.py', [str(reply_queue), str(recognized_data_queue)]])
-supervisor = subprocess.Popen(['python', 'supervisor.py', [
+thinker = subprocess.Popen(['python', 'my_module/thinker.py', [str(reply_queue), str(recognized_data_queue)]])
+supervisor = subprocess.Popen(['python', 'my_module/supervisor.py', [
     str(stop_queue),
     str(recognized_data_queue)
 ]])
-recognizer = subprocess.Popen(['python', 'recognizer.py', [
+recognizer = subprocess.Popen(['python', 'my_module/recognizer.py', [
     str(listen_queue),
     str(audio_resource_queue),
     str(recognized_data_queue),
     str(recognition_queue),
     str(filename_queue)
 ]])
-print_service = subprocess.Popen(['python', 'print_service.py', [
+print_service = subprocess.Popen(['python', 'my_module/print_service.py', [
     str(print_data_queue),
     str(voice_count_queue),
 ]])
-audio_service = subprocess.Popen(['python', 'audio_service.py', [
+audio_service = subprocess.Popen(['python', 'my_module/audio_service.py', [
     str(door_queue_for_audio),
     str(audio_resource_queue),
     str(recognition_queue),

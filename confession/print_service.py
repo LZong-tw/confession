@@ -1,11 +1,10 @@
-import sys
 import time
 from fpdf import FPDF  # for pdf creation
 import win32print
 import win32api
+from pydub import AudioSegment
 
-print_data_queue = eval(sys.argv[1]).strip('"')
-voice_count_queue = eval(sys.argv[2]).strip('"')
+
 class newPDF(FPDF):
     def __init__(self, orientation="P", unit="mm", format="A4"):
         # Some checks
@@ -101,50 +100,55 @@ class newPDF(FPDF):
         # Set default PDF version number
         self.pdf_version = "1.3"
 
-while True:
-    while not print_data_queue.empty():
-        file = voice_count_queue.get()
-        try:
-            audio = AudioSegment.from_file(file)
-            # Get the duration in milliseconds and convert it to seconds
-            duration = len(audio)
-        except Exception as e:
-            print(f"Error: {e}")
-            duration = 3000
-        time.sleep(duration / 1000)
-        theWords = print_data_queue.get()
-        pdf = newPDF("P", "pt")  # P(ortrait), points size ref, Letter-size paper
-        pdf.add_page()  # add a blank page to start
-        pdf.add_font("msjh", "", "../微軟正黑體.ttf", 1)
-        pdf.image("../assets/top.png", x=None, y=None, w=50, h=15, type="", link="")
-        pdf.set_font("msjh", size=2)  # optional here, but useful if most text is plain
-        pdf.write(h=2, txt="\n")
-        hello_string = theWords
-        pdf.set_font("msjh", size=10)
-        pdf.write(h=14, txt=hello_string)
-        pdf.set_font("msjh", size=10)
-        pdf.write(h=10, txt="\n")
-        pdf.image("../assets/bottom.png", x=None, y=None, w=50, h=15, type="",
-                  link="")
-        # output the created page(s) as a PDF file
-        pdf_filename = "../storage/hello_world1.pdf"
-        pdf.output(pdf_filename)
-        # finally, print the PDF file to the printer
-        GHOSTSCRIPT_PATH = "C:\\Program Files\\gs\\gs10.01.1\\bin\\gswin64.exe"
-        GSPRINT_PATH = "C:\\Program Files\\Ghostgum\\gsview\\gsprint.exe"
+def print_service(print_data_queue, voice_count_queue):
+    while True:
+        while not print_data_queue.empty():
+            file = voice_count_queue.get()
+            try:
+                audio = AudioSegment.from_file(file)
+                # Get the duration in milliseconds and convert it to seconds
+                duration = len(audio)
+            except Exception as e:
+                print(f"Error: {e}")
+                duration = 3000
+            time.sleep(duration / 1000)
+            the_words = print_data_queue.get()
+            pdf = newPDF("P",
+                         "pt")  # P(ortrait), points size ref, Letter-size paper
+            pdf.add_page()  # add a blank page to start
+            pdf.add_font("msjh", "", "../微軟正黑體.ttf", 1)
+            pdf.image("../assets/top.png", x=None, y=None, w=50, h=15, type="",
+                      link="")
+            pdf.set_font("msjh",
+                         size=2)  # optional here, but useful if most text is plain
+            pdf.write(h=2, txt="\n")
+            hello_string = the_words
+            pdf.set_font("msjh", size=10)
+            pdf.write(h=14, txt=hello_string)
+            pdf.set_font("msjh", size=10)
+            pdf.write(h=10, txt="\n")
+            pdf.image("../assets/bottom.png", x=None, y=None, w=50, h=15,
+                      type="",
+                      link="")
+            # output the created page(s) as a PDF file
+            pdf_filename = "../storage/hello_world1.pdf"
+            pdf.output(pdf_filename)
+            # finally, print the PDF file to the printer
+            GHOSTSCRIPT_PATH = "C:\\Program Files\\gs\\gs10.01.1\\bin\\gswin64.exe"
+            GSPRINT_PATH = "C:\\Program Files\\Ghostgum\\gsview\\gsprint.exe"
 
-        # YOU CAN PUT HERE THE NAME OF YOUR SPECIFIC PRINTER INSTEAD OF DEFAULT
-        currentprinter = win32print.GetDefaultPrinter()
+            # YOU CAN PUT HERE THE NAME OF YOUR SPECIFIC PRINTER INSTEAD OF DEFAULT
+            current_printer = win32print.GetDefaultPrinter()
 
-        win32api.ShellExecute(
-            0,
-            "open",
-            GSPRINT_PATH,
-            '-ghostscript "'
-            + GHOSTSCRIPT_PATH
-            + '" -printer "'
-            + currentprinter
-            + '" "hello_world1.pdf"',
-            ".",
-            0,
-        )
+            win32api.ShellExecute(
+                0,
+                "open",
+                GSPRINT_PATH,
+                '-ghostscript "'
+                + GHOSTSCRIPT_PATH
+                + '" -printer "'
+                + current_printer
+                + '" "hello_world1.pdf"',
+                ".",
+                0,
+            )

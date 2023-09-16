@@ -1,22 +1,22 @@
 import time
 import serial
-import sys
 
 
-# Define the serial port and baud rate
-ser = serial.Serial('COM5', 9600)
-# Change '/dev/ttyUSB0' to the correct port on your system
+def arduino_service(door_queue_for_screen, door_queue_for_audio, port="COM5"):
+    # Define the serial port and baud
+    ser = serial.Serial(port, 9600)
 
-door_queue_for_screen = eval(sys.argv[1])
-door_queue_for_audio = eval(sys.argv[2])
-
-while True:
-    # Read data from the Arduino
-    data = ser.readline().decode().strip()
-    if data == "OPEN":
-        door_queue_for_audio.put("OPEN")
-        door_queue_for_screen.put("OPEN")
-        time.sleep(15)
-    else:
-        door_queue_for_audio.get()
-        door_queue_for_screen.get()
+    while True:
+        # Read data from the Arduino
+        data = ser.readline().decode().strip()
+        if data == "OPEN":
+            door_queue_for_audio.put("OPEN")
+            door_queue_for_screen.put("OPEN")
+            time.sleep(15)
+        elif data == "CLOSE" and (
+                not (
+                    door_queue_for_audio.empty() and
+                    door_queue_for_screen.empty())
+                ):
+            door_queue_for_audio.get()
+            door_queue_for_screen.get()

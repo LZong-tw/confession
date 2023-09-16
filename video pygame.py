@@ -11,7 +11,7 @@ screen_width, screen_height = sg.Window.get_screen_size()
 size = (screen_width, screen_height)
 screen = pygame.display.set_mode(size)
 
-video = cv2.VideoCapture('assets/背景影片/the_bg.mp4')
+video = cv2.VideoCapture('assets/bg_video/actual.mp4')
 frame_width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
 frame_height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
@@ -22,14 +22,9 @@ frames = []  # list to store each frame
 
 # Main loop
 clock = pygame.time.Clock()
+mode = "forward_backward"  # Can be "forward_backward" or "forward_only"
 reverse = False
 while True:
-    """ret, frame = video.read()
-    
-    if not ret:
-        video.set(cv2.CAP_PROP_POS_FRAMES, 0)  # Seek back to the first frame
-        continue
-"""
     # Resize while maintaining aspect ratio
     if frame_aspect_ratio > screen_aspect_ratio:
         new_width = screen_width
@@ -37,11 +32,14 @@ while True:
     else:
         new_height = screen_height
         new_width = int(screen_height * frame_aspect_ratio)
-    
-    if not reverse:
+
+    if not reverse or mode == "forward_only":
         ret, frame = video.read()
         if not ret:
-            reverse = True
+            if mode == "forward_only":
+                video.set(cv2.CAP_PROP_POS_FRAMES, 0)  # rewind the video
+            else:
+                reverse = True
             continue
         frames.append(frame)
     else:
@@ -73,6 +71,12 @@ while True:
             video.release()
             pygame.quit()
             quit()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:  # Switch mode when space bar is pressed
+                if mode == "forward_backward":
+                    mode = "forward_only"
+                else:
+                    mode = "forward_backward"
 
     pygame.display.flip()
     clock.tick(30)  # Limit to 30 FPS

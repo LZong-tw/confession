@@ -6,3 +6,4 @@ from .recognizer import *
 from .responser import *
 from .supervisor import *
 from .thinker import *
+from .welcome import *

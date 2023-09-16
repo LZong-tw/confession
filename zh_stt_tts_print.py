@@ -165,7 +165,7 @@ def main_process():
     now = datetime.datetime.now()
     now = now.strftime("%Y-%m-%d_%H%M%S")
     mixer.init(buffer = 8192)
-    mixer.music.load('assets/歡迎詞錄音/synthesis.wav')
+    mixer.music.load('assets/welcome_words/synthesis.wav')
     mixer.music.play()
     while mixer.music.get_busy():  # wait for music to finish playing
         time.sleep(1)

@@ -84,6 +84,5 @@ def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
             mixer.init(buffer=8192)
             mixer.music.load('storage/' + now + '.mp3')
             mixer.music.play()
-            while mixer.music.get_busy():  # wait for music to finish playing
-                time.sleep(1)
-            screen_queue.put("Sscreen off")
+            while not mixer.music.get_busy():  # wait for music to finish playing
+                screen_queue.put("Screen off")

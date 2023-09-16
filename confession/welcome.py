@@ -11,6 +11,5 @@ def welcome(welcome_queue, block_queue, listen_queue):
                 mixer.init(buffer=8192)
                 mixer.music.load('assets/welcome_words/synthesis.wav')
                 mixer.music.play()
-                while mixer.music.get_busy():  # wait for music to finish playing
-                    time.sleep(1)
-                listen_queue.put("Start recognizing")
+                while not mixer.music.get_busy():  # wait for music to finish playing
+                    listen_queue.put("Start recognizing")

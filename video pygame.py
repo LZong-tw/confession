@@ -19,6 +19,7 @@ frame_aspect_ratio = frame_width / frame_height
 screen_aspect_ratio = screen_width / screen_height
 
 frames = []  # list to store each frame
+max_frames = 500 
 
 # Main loop
 clock = pygame.time.Clock()
@@ -33,6 +34,9 @@ while True:
         new_height = screen_height
         new_width = int(screen_height * frame_aspect_ratio)
 
+    new_height = 1080
+    new_width = 1240
+
     if not reverse or mode == "forward_only":
         ret, frame = video.read()
         if not ret:
@@ -41,6 +45,8 @@ while True:
             else:
                 reverse = True
             continue
+        if len(frames) >= max_frames:
+            frames.pop(0)
         frames.append(frame)
     else:
         if len(frames) == 0:

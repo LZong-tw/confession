@@ -103,15 +103,6 @@ class newPDF(FPDF):
 def print_service(print_data_queue, voice_count_queue):
     while True:
         while not print_data_queue.empty():
-            file = voice_count_queue.get()
-            try:
-                audio = AudioSegment.from_file("storage/" + file + ".mp3")
-                # Get the duration in milliseconds and convert it to seconds
-                duration = len(audio)
-            except Exception as e:
-                print(f"Error: {e}")
-                duration = 3000
-            time.sleep(duration / 1000)
             the_words = print_data_queue.get()
             print("PRINT following: " + the_words)
             pdf = newPDF("P",

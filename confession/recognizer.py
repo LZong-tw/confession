@@ -1,27 +1,19 @@
 import datetime
 
 
-def recognizer(listen_queue, audio_resource_queue, recognized_data_queue,
+def recognizer(listen_queue, stt_result_queue, recognized_data_queue,
                recognition_queue, filename_queue):
     while True:
         while not listen_queue.empty():
-            listen_queue.get()
+            print("Listen Queue: " + listen_queue.get())
             # 語音轉文字
-            try:
-                recognition = recognition_queue.get()
-                source = audio_resource_queue.get()
-                print('start listening...')
-                audioData = recognition.listen(source, timeout = 3)
-                print('end')
-                print('recognizing...')
-                content = recognition.recognize_google(audioData, language='zh-tw')
-            except Exception as e:
-                print(str(e))
-                content = '請再說一遍!!'
+            recognition_queue.put("START RECOGNITION")               
+        while not stt_result_queue.empty():
+            content = stt_result_queue.get()
             print("辨識結果：" + content)
             now = datetime.datetime.now()
             now = now.strftime("%Y-%m-%d_%H%M%S")
-            filename = f"../storage/{now}問答.txt"
+            filename = f"storage/{now}問答.txt"
             with open(filename, "w", encoding="utf-8") as out:
                 out.write("問：" + content + "\n")
             filename_queue.put(now)

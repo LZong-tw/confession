@@ -27,7 +27,7 @@ void loop()
     // 開啟
     Serial.println("OPEN");
     digitalWrite(led, LOW);
-    delay(200);
+    delay(500);
     Serial.flush();
 	}
 }

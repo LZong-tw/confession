@@ -10,7 +10,7 @@ stop_queue = multiprocessing.Queue()
 recognized_data_queue = multiprocessing.Queue()
 screen_queue = multiprocessing.Queue()
 listen_queue = multiprocessing.Queue()
-audio_resource_queue = multiprocessing.Queue()
+stt_result_queue = multiprocessing.Queue()
 recognition_queue = multiprocessing.Queue()
 filename_queue = multiprocessing.Queue()
 voice_count_queue = multiprocessing.Queue()
@@ -47,7 +47,7 @@ supervisor = subprocess.Popen(['python', 'confession/supervisor.py',
 ])
 recognizer = subprocess.Popen(['python', 'confession/recognizer.py', 
     str(listen_queue),
-    str(audio_resource_queue),
+    str(stt_result_queue),
     str(recognized_data_queue),
     str(recognition_queue),
     str(filename_queue)
@@ -58,7 +58,7 @@ print_service = subprocess.Popen(['python', 'confession/print_service.py',
 ])
 audio_service = subprocess.Popen(['python', 'confession/audio_service.py', 
     str(door_queue_for_audio),
-    str(audio_resource_queue),
+    str(stt_result_queue),
     str(recognition_queue),
 ])
 

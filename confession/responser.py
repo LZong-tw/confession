@@ -69,20 +69,20 @@ def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
                 audio_config=audio_config,
             )
             now = filename_queue.get()
-            filename = f"../storage/{now}.mp3"
+            filename = f"storage/{now}.mp3"
             voice_count_queue.put(now)
             print_data_queue.put(response_texts)
             with open(filename, "wb") as out:
                 out.write(response.audio_content)
                 print(f'Generated speech saved to "{filename}"')
-            filename = f"../storage/{now}問答.txt"
+            filename = f"storage/{now}問答.txt"
             with open(filename, "a", encoding="utf-8") as out:
                 out.write("答：" + response_texts)
             print(f'Response log saved to "{filename}"')
 
             # 播放語音
             mixer.init(buffer=8192)
-            mixer.music.load('../storage/' + now + '.mp3')
+            mixer.music.load('storage/' + now + '.mp3')
             mixer.music.play()
             while mixer.music.get_busy():  # wait for music to finish playing
                 time.sleep(1)

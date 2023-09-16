@@ -1,16 +1,34 @@
 import speech_recognition as SpRe
 
+def audio_service(door_queue_for_audio, stt_result_queue, recognition_queue):
+    microphone = SpRe.Microphone(device_index=1)
+    recognition = SpRe.Recognizer()
 
-def audio_service(door_queue_for_audio, audio_resource_queue, recognition_queue):
-    while True:
-        while not door_queue_for_audio.empty():
-            door_queue_for_audio.get()
-            if not audio_resource_queue.empty():
-                audio_resource_queue.get()
-            if not recognition_queue.empty():
-                recognition_queue.get()
-            recognition = SpRe.Recognizer()
-            with SpRe.Microphone(device_index=1) as source:
-                recognition.adjust_for_ambient_noise(source, duration=2)
-                audio_resource_queue.put(source)
-                recognition_queue.put(recognition)
+    with microphone as source:
+        while True:
+            if not door_queue_for_audio.empty():
+                content = door_queue_for_audio.get()
+                print("Audio service get door_queue_for_audio: " + content)
+
+                while not stt_result_queue.empty():
+                    stt_result_queue.get()
+
+                    recognition.adjust_for_ambient_noise(source, duration=2)
+
+            while not recognition_queue.empty():
+                content = recognition_queue.get()
+                print(content)
+
+                if content == "START RECOGNITION":
+                    try:
+                        print('start listening...')
+                        audioData = recognition.listen(source, timeout=3)
+                        print('end')
+                        print('recognizing...')
+                        content = recognition.recognize_google(audioData, language='zh-tw')
+                    except Exception as e:
+                        print(str(e))
+                        content = '請再說一遍!!'
+
+                stt_result_queue.put(content)
+

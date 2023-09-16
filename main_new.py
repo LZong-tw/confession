@@ -32,9 +32,9 @@ def supervisor(stop_queue, recognized_data_queue, start_queue):
     confession.supervisor(stop_queue, recognized_data_queue, start_queue)
 
 
-def recognizer(listen_queue, stt_result_queue,
+def recognition_bridge(listen_queue, stt_result_queue,
                recognized_data_queue, recognition_queue, filename_queue):
-    confession.recognizer(listen_queue, stt_result_queue,
+    confession.recognition_bridge(listen_queue, stt_result_queue,
                           recognized_data_queue, recognition_queue,
                           filename_queue)
 
@@ -43,9 +43,9 @@ def print_service(print_data_queue, voice_count_queue):
     confession.print_service(print_data_queue, voice_count_queue)
 
 
-def audio_service(door_queue_for_audio, stt_result_queue,
+def recognition_service(door_queue_for_audio, stt_result_queue,
                   recognition_queue):
-    confession.audio_service(door_queue_for_audio,
+    confession.recognition_service(door_queue_for_audio,
                              stt_result_queue, recognition_queue)
 
 
@@ -78,12 +78,12 @@ if __name__ == '__main__':
         reply_queue, recognized_data_queue, start_queue,))
     supervisor_process = Process(target=supervisor, args=(
         stop_queue, recognized_data_queue, start_queue,))
-    recognizer_process = Process(target=recognizer, args=(
+    recognition_bridge_process = Process(target=recognition_bridge, args=(
         listen_queue, stt_result_queue,
         recognized_data_queue, recognition_queue, filename_queue,))
     print_service_process = Process(target=print_service, args=(
         print_data_queue, voice_count_queue,))
-    audio_service_process = Process(target=audio_service, args=(
+    recognition_service_process = Process(target=recognition_service, args=(
         door_queue_for_audio, stt_result_queue,
         recognition_queue,))
 
@@ -93,9 +93,9 @@ if __name__ == '__main__':
     responser_process.start()
     thinker_process.start()
     supervisor_process.start()
-    recognizer_process.start()
+    recognition_bridge_process.start()
     print_service_process.start()
-    audio_service_process.start()
+    recognition_service_process.start()
 
     arduino_service_process.join()
     screen_manager_process.join()
@@ -103,6 +103,6 @@ if __name__ == '__main__':
     responser_process.join()
     thinker_process.join()
     supervisor_process.join()
-    recognizer_process.join()
+    recognition_bridge_process.join()
     print_service_process.join()
-    audio_service_process.join()
+    recognition_service_process.join()

@@ -1,6 +1,6 @@
 import speech_recognition as SpRe
 
-def audio_service(door_queue_for_audio, stt_result_queue, recognition_queue):
+def recognition_service(door_queue_for_audio, stt_result_queue, recognition_queue):
     microphone = SpRe.Microphone(device_index=1)
     recognition = SpRe.Recognizer()
 

@@ -1,7 +1,7 @@
 import datetime
 
 
-def recognizer(listen_queue, stt_result_queue, recognized_data_queue,
+def recognition_bridge(listen_queue, stt_result_queue, recognized_data_queue,
                recognition_queue, filename_queue):
     while True:
         while not listen_queue.empty():

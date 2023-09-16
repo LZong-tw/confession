@@ -45,7 +45,7 @@ supervisor = subprocess.Popen(['python', 'confession/supervisor.py',
     str(stop_queue),
     str(recognized_data_queue)
 ])
-recognizer = subprocess.Popen(['python', 'confession/recognizer.py', 
+recognition_bridge = subprocess.Popen(['python', 'confession/recognition_bridge.py', 
     str(listen_queue),
     str(stt_result_queue),
     str(recognized_data_queue),
@@ -56,7 +56,7 @@ print_service = subprocess.Popen(['python', 'confession/print_service.py',
     str(print_data_queue),
     str(voice_count_queue),
 ])
-audio_service = subprocess.Popen(['python', 'confession/audio_service.py', 
+recognition_service = subprocess.Popen(['python', 'confession/recognition_service.py', 
     str(door_queue_for_audio),
     str(stt_result_queue),
     str(recognition_queue),

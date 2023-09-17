@@ -2,7 +2,7 @@ import openai
 import random
 
 
-def thinker(reply_queue, recognized_data_queue, start_queue):
+def thinker(reply_queue, recognized_data_queue, start_queue, stop_queue):
     while True:
         while not recognized_data_queue.empty():
             # 送至 GPT-4 進行回答
@@ -32,5 +32,6 @@ def thinker(reply_queue, recognized_data_queue, start_queue):
                 theWords = my_openai_obj.to_dict()['message']['content']
             except():
                 theWords = random.choice(default)
-            print("答：" + theWords)
+            print("思考回答：" + theWords)
+            stop_queue.get()
             reply_queue.put(theWords)

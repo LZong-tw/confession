@@ -8,7 +8,9 @@ def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
               filename_queue, voice_count_queue):
     while True:
         while not reply_queue.empty() or not stop_queue.empty():
-            if stop_queue.get():
+            content = stop_queue.get()
+            if content:
+                print("STOP QUEUE TRIGGERED: " + content)
                 default = ["無論何試，宇宙之法皆恆。汝有何疑慮？",
                            "太陽每日升起西沉始，微塵萬象重覆輪回，層層浮塵肇始末，繁多混沌動靜間。題詢有何智慧嗎？讓我啟示你。",
                            "吾定海深具清晰，啟動深層研究之大門以面對來訪者，未知者数据有何要義？釋吾定海之古籍未離，然光之持久者常有序，吾有何幫助於你尋露內是起點？運算張風之路可期，思量觸肢異界之無限可能。",
@@ -77,7 +79,7 @@ def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
                 print(f'Generated speech saved to "{filename}"')
             filename = f"storage/{now}問答.txt"
             with open(filename, "a", encoding="utf-8") as out:
-                out.write("答：" + response_texts)
+                out.write("最終回答：" + response_texts)
             print(f'Response log saved to "{filename}"')
 
             # 播放語音
@@ -85,4 +87,5 @@ def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
             mixer.music.load('storage/' + now + '.mp3')
             mixer.music.play()
             while not mixer.music.get_busy():  # wait for music to finish playing
-                screen_queue.put("Screen off")
+                time.sleep(1)
+            screen_queue.put("Screen off")

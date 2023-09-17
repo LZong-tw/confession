@@ -1,73 +1,108 @@
+import confession
 import subprocess
-import multiprocessing
+from multiprocessing import Process, Queue
 
-# Create a multiprocessing queue for communication
-door_queue_for_screen = multiprocessing.Queue()
-door_queue_for_audio = multiprocessing.Queue()
-print_data_queue = multiprocessing.Queue()
-reply_queue = multiprocessing.Queue()
-stop_queue = multiprocessing.Queue()
-recognized_data_queue = multiprocessing.Queue()
-screen_queue = multiprocessing.Queue()
-listen_queue = multiprocessing.Queue()
-stt_result_queue = multiprocessing.Queue()
-recognition_queue = multiprocessing.Queue()
-filename_queue = multiprocessing.Queue()
-voice_count_queue = multiprocessing.Queue()
-welcome_queue = multiprocessing.Queue()
 
-# Launch Module 1 in a separate process
-arduino_service = subprocess.Popen(['python', 'confession/arduino_service.py', 
-    str(door_queue_for_screen),
-    str(door_queue_for_audio),
-])
+def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, block_queue, port="COM3"):
+    confession.arduino_service(door_queue_for_screen,
+                               door_queue_for_audio, welcome_queue, block_queue, port)
 
-# Launch Module 2 in a separate process
-screen_manager = subprocess.Popen(['python', './confession/screen_manager.py', 
-    str(door_queue_for_screen),
-    str(screen_queue),
-    str(welcome_queue),
-])
 
-welcome = subprocess.Popen(['python', 'confession/welcome.py', str(welcome_queue)])
+def screen_manager(door_queue_for_screen, screen_queue, welcome_queue):
+    confession.screen_manager(door_queue_for_screen,
+                              screen_queue, welcome_queue)
 
-responser = subprocess.Popen(['python', 'confession/responser.py', 
-    str(screen_queue),
-    str(reply_queue),
-    str(stop_queue),
-    str(print_data_queue),
-    str(filename_queue),
-    str(voice_count_queue),
-])
 
-thinker = subprocess.Popen(['python', 'confession/thinker.py', str(reply_queue), str(recognized_data_queue)])
-supervisor = subprocess.Popen(['python', 'confession/supervisor.py', 
-    str(stop_queue),
-    str(recognized_data_queue)
-])
-recognition_bridge = subprocess.Popen(['python', 'confession/recognition_bridge.py', 
-    str(listen_queue),
-    str(stt_result_queue),
-    str(recognized_data_queue),
-    str(recognition_queue),
-    str(filename_queue)
-])
-print_service = subprocess.Popen(['python', 'confession/print_service.py', 
-    str(print_data_queue),
-    str(voice_count_queue),
-])
-recognition_service = subprocess.Popen(['python', 'confession/recognition_service.py', 
-    str(door_queue_for_audio),
-    str(stt_result_queue),
-    str(recognition_queue),
-])
+def welcome(welcome_queue, block_queue, listen_queue):
+    confession.welcome(welcome_queue, block_queue, listen_queue)
 
-# Continue with the main script
 
-# Optionally, retrieve data from the queue
-# data_from_module1 = queue.get()
-# data_from_module2 = queue.get()
+def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
+              filename_queue, voice_count_queue):
+    confession.responser(screen_queue, reply_queue, stop_queue,
+                         print_data_queue,
+                         filename_queue, voice_count_queue)
 
-# if __name__ == "__main__":
-    #function1()
-    #function2()
+
+def thinker(reply_queue, recognized_data_queue, start_queue, stop_queue):
+    confession.thinker(reply_queue, recognized_data_queue, start_queue, stop_queue)
+
+
+def supervisor(stop_queue, recognized_data_queue, start_queue):
+    confession.supervisor(stop_queue, recognized_data_queue, start_queue)
+
+
+def recognition_bridge(listen_queue, stt_result_queue,
+               recognized_data_queue, recognition_queue, filename_queue):
+    confession.recognition_bridge(listen_queue, stt_result_queue,
+                          recognized_data_queue, recognition_queue,
+                          filename_queue)
+
+
+def print_service(print_data_queue, voice_count_queue):
+    confession.print_service(print_data_queue, voice_count_queue)
+
+
+def recognition_service(door_queue_for_audio, stt_result_queue,
+                  recognition_queue):
+    confession.recognition_service(door_queue_for_audio,
+                             stt_result_queue, recognition_queue)
+
+
+if __name__ == '__main__':
+    door_queue_for_screen = Queue()
+    door_queue_for_audio = Queue()
+    print_data_queue = Queue()
+    reply_queue = Queue()
+    stop_queue = Queue()
+    recognized_data_queue = Queue()
+    screen_queue = Queue()
+    listen_queue = Queue()
+    stt_result_queue = Queue()
+    recognition_queue = Queue()
+    filename_queue = Queue()
+    voice_count_queue = Queue()
+    welcome_queue = Queue()
+    start_queue = Queue()
+    block_queue = Queue()
+
+    arduino_service_process = Process(target=arduino_service, args=(
+        door_queue_for_screen, door_queue_for_audio, welcome_queue, block_queue))
+    screen_manager_process = Process(target=screen_manager, args=(
+        door_queue_for_screen, screen_queue, welcome_queue,))
+    welcome_process = Process(target=welcome, args=(welcome_queue, block_queue, listen_queue))
+    responser_process = Process(target=responser, args=(
+        screen_queue, reply_queue, stop_queue, print_data_queue,
+        filename_queue, voice_count_queue,))
+    thinker_process = Process(target=thinker, args=(
+        reply_queue, recognized_data_queue, start_queue, stop_queue,))
+    supervisor_process = Process(target=supervisor, args=(
+        stop_queue, recognized_data_queue, start_queue,))
+    recognition_bridge_process = Process(target=recognition_bridge, args=(
+        listen_queue, stt_result_queue,
+        recognized_data_queue, recognition_queue, filename_queue,))
+    print_service_process = Process(target=print_service, args=(
+        print_data_queue, voice_count_queue,))
+    recognition_service_process = Process(target=recognition_service, args=(
+        door_queue_for_audio, stt_result_queue,
+        recognition_queue,))
+
+    arduino_service_process.start()
+    screen_manager_process.start()
+    welcome_process.start()
+    responser_process.start()
+    thinker_process.start()
+    supervisor_process.start()
+    recognition_bridge_process.start()
+    print_service_process.start()
+    recognition_service_process.start()
+
+    arduino_service_process.join()
+    screen_manager_process.join()
+    welcome_process.join()
+    responser_process.join()
+    thinker_process.join()
+    supervisor_process.join()
+    recognition_bridge_process.join()
+    print_service_process.join()
+    recognition_service_process.join()

@@ -144,3 +144,4 @@ def print_service(print_data_queue, voice_count_queue):
                 ".",
                 0,
             )
+            break

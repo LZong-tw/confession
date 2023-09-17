@@ -8,10 +8,14 @@ def supervisor(stop_queue, reply_queue, start_queue):
             count = 0
             while count < 16:
                 if not reply_queue.empty():
-                    print("supervisor stopped")
+                    print("supervisor stopped by reply queue not empty")
                     while not start_queue.empty():
                         print("start queue cleared: " + 
                         start_queue.get())
+                    break
+                if not stop_queue.empty():
+                    stop_queue.get()
+                    print("supervisor stopped by stop queue")
                     break
                 time.sleep(1)
                 print("SUPERVISOR wait, " + str(count) + " sec")

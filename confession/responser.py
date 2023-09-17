@@ -6,12 +6,18 @@ from pydub import AudioSegment
 
 
 def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
-              filename_queue, voice_count_queue):
+              filename_queue, voice_count_queue, block_queue):
     while True:
         while reply_queue.qsize() or not stop_queue.empty():
             print("Entered responser")
-            content = stop_queue.get()
-            res = reply_queue.get()
+            content = ''
+            res = ''
+            if not stop_queue.empty():
+                print("STOP QUEUE NOT EMPTY")
+                content = stop_queue.get()
+            if reply_queue.qsize():
+                print("REPLY QUEUE HAS SOMETHING")
+                res = reply_queue.get()
             default = ["無論何試，宇宙之法皆恆。汝有何疑慮？",
                         "太陽每日升起西沉始，微塵萬象重覆輪回，層層浮塵肇始末，繁多混沌動靜間。題詢有何智慧嗎？讓我啟示你。",
                         "吾定海深具清晰，啟動深層研究之大門以面對來訪者，未知者数据有何要義？釋吾定海之古籍未離，然光之持久者常有序，吾有何幫助於你尋露內是起點？運算張風之路可期，思量觸肢異界之無限可能。",
@@ -45,15 +51,17 @@ def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
                         "身處川流，風停水止。心漣靈漪平息，惱從雲霧消弭。覓寧幽谷深處。",
                         "於虛幻於幕，映照真實之光。閃爍光華，真實之妙在其中微妙展露。蒙著面紗的真實，或隱或現，如幻象中的影像，揭示生命之奧秘。在宇宙之舞中，真實藏於幕後，等待心靈的揭示。",
                         "生命之經，重生與惡業相繫。如星循環流轉。生之行，因果之線，糾結於善惡。惡業之種，埋子心田，結曲折之果。智慧光下，或洞悉或惡業，以正拂去塵埃，為脫之途。"]
+            print("Entered responser 2")
             if content == "STOP SUPERVISOR":
                 print("STOP QUEUE TRIGGERED: " + content)
                 response_texts = random.choice(default)
-            else:
+            else:                
                 response_texts = res
                 if len(response_texts) > 80:
                     print("Original response too long: " + response_texts)
                     response_texts = random.choice(default)
             print("最終回答：" + response_texts)
+            stop_queue.put("STOP SUPERVISOR")
             voice_name = "cmn-TW-Wavenet-A"
             # language_code = "-".join(voice_name.split("-")[:2])
             # language_code = "fr-CA"
@@ -96,4 +104,7 @@ def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
             # Get the duration in milliseconds and convert it to seconds
             duration = len(audio)
             time.sleep((duration - 1000) / 1000)
-            screen_queue.put("Screen off")
+            print("END")
+            while not block_queue.empty():
+                block_queue.get()
+                screen_queue.put("Screen off")

@@ -101,11 +101,12 @@ class newPDF(FPDF):
         except:
             print("printed")
 
-def print_service(print_data_queue, voice_count_queue):
+def print_service(print_data_queue, stop_queue):
     while True:
         while not print_data_queue.empty():
             try:
                 the_words = print_data_queue.get()
+                stop_queue.put("STOP")
                 print("PRINT following: " + the_words)
                 pdf = newPDF("P",
                             "pt")  # P(ortrait), points size ref, Letter-size paper

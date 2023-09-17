@@ -28,8 +28,8 @@ def thinker(reply_queue, recognized_data_queue, start_queue, stop_queue):
     confession.thinker(reply_queue, recognized_data_queue, start_queue, stop_queue)
 
 
-def supervisor(stop_queue, recognized_data_queue, start_queue):
-    confession.supervisor(stop_queue, recognized_data_queue, start_queue)
+def supervisor(stop_queue, reply_queue, start_queue):
+    confession.supervisor(stop_queue, reply_queue, start_queue)
 
 
 def recognition_bridge(listen_queue, stt_result_queue,
@@ -77,7 +77,7 @@ if __name__ == '__main__':
     thinker_process = Process(target=thinker, args=(
         reply_queue, recognized_data_queue, start_queue, stop_queue,))
     supervisor_process = Process(target=supervisor, args=(
-        stop_queue, recognized_data_queue, start_queue,))
+        stop_queue, reply_queue, start_queue,))
     recognition_bridge_process = Process(target=recognition_bridge, args=(
         listen_queue, stt_result_queue,
         recognized_data_queue, recognition_queue, filename_queue,))

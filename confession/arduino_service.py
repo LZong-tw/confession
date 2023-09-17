@@ -20,8 +20,6 @@ def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, 
                     print("CLEAR DOOR OPEN QUEUE FOR AUDIO: " + door_queue_for_audio.get())
             if door_queue_for_screen.empty():
                 door_queue_for_screen.put("OPEN")
-                # if welcome_queue.empty():
-                #     welcome_queue.put("welcome")
             else:
                 while not door_queue_for_screen.empty():
                     print("CLEAR DOOR OPEN QUEUE FOR SCREEN: " + door_queue_for_screen.get())
@@ -40,7 +38,6 @@ def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, 
                 print('arduino service: door_queue_for_screen not empty')
                 door_queue_for_screen.get()
         else:
-            # print("Arduino exception: " + data)
             if door_queue_for_audio.empty() and data == "OPEN" and not is_open:
                 door_queue_for_audio.put("OPEN")
             else:
@@ -48,8 +45,6 @@ def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, 
                     print("CLEAR DOOR OPEN QUEUE FOR AUDIO2: " + door_queue_for_audio.get())
             if door_queue_for_screen.empty() and data == "OPEN" and not is_open:
                 door_queue_for_screen.put("OPEN")
-                # if welcome_queue.empty():
-                #     welcome_queue.put("welcome")
             else:
                 while not door_queue_for_screen.empty():
                     print("CLEAR DOOR OPEN QUEUE FOR SCREEN2: " + door_queue_for_screen.get())

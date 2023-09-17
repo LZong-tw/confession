@@ -12,7 +12,6 @@ def recognition_service(door_queue_for_audio, stt_result_queue, recognition_queu
 
                 while not stt_result_queue.empty():
                     stt_result_queue.get()
-
                     recognition.adjust_for_ambient_noise(source, duration=2)
 
             while not recognition_queue.empty():
@@ -22,7 +21,7 @@ def recognition_service(door_queue_for_audio, stt_result_queue, recognition_queu
                 if content == "START RECOGNITION":
                     try:
                         print('start listening...')
-                        audioData = recognition.listen(source, timeout=3)
+                        audioData = recognition.listen(source, timeout=2)
                         print('end')
                         print('recognizing...')
                         content = recognition.recognize_google(audioData, language='zh-tw')

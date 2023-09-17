@@ -84,7 +84,7 @@ def screen_manager(door_queue_for_screen, screen_queue, welcome_queue):
                     print("WELCOME QUEUE remains: " + welcome_queue.get())
             while not screen_queue.empty():
                 content = screen_queue.get()
-                if content == "CLOSE":
+                if content == "Screen off":
                     screen_queue.get()
                     print("關螢幕")
                     screen_off(screen)

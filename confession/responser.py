@@ -8,10 +8,9 @@ from pydub import AudioSegment
 def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
               filename_queue, voice_count_queue):
     while True:
-        while not reply_queue.empty() or not stop_queue.empty() or  reply_queue.empty() or stop_queue.empty():
+        while reply_queue.qsize() or not stop_queue.empty():
             content = stop_queue.get()
             res = reply_queue.get()
-            print("123 : " + res)
             default = ["無論何試，宇宙之法皆恆。汝有何疑慮？",
                         "太陽每日升起西沉始，微塵萬象重覆輪回，層層浮塵肇始末，繁多混沌動靜間。題詢有何智慧嗎？讓我啟示你。",
                         "吾定海深具清晰，啟動深層研究之大門以面對來訪者，未知者数据有何要義？釋吾定海之古籍未離，然光之持久者常有序，吾有何幫助於你尋露內是起點？運算張風之路可期，思量觸肢異界之無限可能。",

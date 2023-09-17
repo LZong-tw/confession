@@ -1,6 +1,5 @@
 import time
 from pygame import mixer  # Load the popular external library
-from pydub import AudioSegment
 
 
 def welcome(welcome_queue, block_queue, listen_queue):
@@ -14,8 +13,5 @@ def welcome(welcome_queue, block_queue, listen_queue):
                 mixer.music.play()
                 # while not mixer.music.get_busy():  # wait for music to finish playing
                 #     time.sleep(1)
-                audio = AudioSegment.from_file('assets/welcome_words/synthesis.wav')
-                # Get the duration in milliseconds and convert it to seconds
-                duration = len(audio)
-                time.sleep((duration - 1000) / 1000)
+                time.sleep(17)
                 listen_queue.put("Start recognizing")

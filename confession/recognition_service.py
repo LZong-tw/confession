@@ -21,13 +21,13 @@ def recognition_service(door_queue_for_audio, stt_result_queue, recognition_queu
                 if content == "START RECOGNITION":
                     try:
                         print('start listening...')
-                        audioData = recognition.listen(source, timeout=2)
+                        audioData = recognition.listen(source, timeout=2,
+                                                       phrase_time_limit=3)
                         print('end')
                         print('recognizing...')
                         content = recognition.recognize_google(audioData, language='zh-tw')
                     except Exception as e:
                         print(str(e))
                         content = '請再說一遍!!'
-
                 stt_result_queue.put(content)
 

@@ -3,17 +3,23 @@ import serial
 
 
 def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, block_queue, port="COM5"):
+    ser = True
     # Define the serial port and baud
-    ser = serial.Serial(port, 9600)
+    # try:
+    #     ser = serial.Serial(port, 9600)
+    # except Exception as e:
+    #     print("Arduino not connected")
     is_open = False
     
     while True:
-        # Read data from the Arduino
-        data = ser.readline().decode().strip()
-        # print("DATA FROM ARDUINO: " + data)
-        # print("Door is open? " + str(is_open))
+        if ser:
+            # Read data from the Arduino
+            data = ser.readline().decode().strip()
+        else:
+            # Read data from the keyboard
+            data = "OPEN"
         if data == "OPEN":
-            # print("Door opened")
+            print("Door opened")
             is_open = True
             if door_queue_for_audio.empty():
                 door_queue_for_audio.put("OPEN")                

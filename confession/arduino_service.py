@@ -5,10 +5,11 @@ import serial
 def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, block_queue, port="COM5"):
     ser = True
     # Define the serial port and baud
-    # try:
-    #     ser = serial.Serial(port, 9600)
-    # except Exception as e:
-    #     print("Arduino not connected")
+    if ser:
+        try:
+            ser = serial.Serial(port, 9600)
+        except Exception as e:
+            print("Arduino not connected")
     is_open = False
     
     while True:

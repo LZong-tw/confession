@@ -57,8 +57,11 @@ def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
                 response_texts = random.choice(default)
             else:                
                 response_texts = res
-                if len(response_texts) > 80:
+                if len(response_texts) > 40:
                     print("Original response too long: " + response_texts)
+                    response_texts = random.choice(default)
+                if '「' in response_texts or '」' in response_texts or '『' in response_texts or '』' in response_texts or '"' in response_texts or "'" in response_texts:
+                    print("Original response contains quotation mark: " + response_texts)
                     response_texts = random.choice(default)
             print("最終回答：" + response_texts)
             stop_queue.put("STOP SUPERVISOR")

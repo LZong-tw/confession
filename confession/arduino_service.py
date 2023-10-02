@@ -1,9 +1,9 @@
-import time
+import keyboard
 import serial
 
 
 def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, block_queue, port="COM5"):
-    ser = True
+    ser = False
     # Define the serial port and baud
     if ser:
         try:
@@ -18,7 +18,12 @@ def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, 
             data = ser.readline().decode().strip()
         else:
             # Read data from the keyboard
-            data = "OPEN"
+            if keyboard.is_pressed('k'):
+                data = "OPEN"
+            elif keyboard.is_pressed('l'):
+                data = "CLOSE"
+            else:
+                data = "CLOSE"
         if data == "OPEN":
             print("Door opened")
             is_open = True

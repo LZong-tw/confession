@@ -1,0 +1,523 @@
+10/3/2023 12:30:34 AM Info Project 'confession kiosk' created successfully and added to workspace
+10/3/2023 12:30:34 AM Info Loading scenario ID: ee64f926-ff3c-463c-942d-d3429845c21f, URI: http://localhost:9098/Scenarios/ee64f926-ff3c-463c-942d-d3429845c21f/Index.html
+10/3/2023 12:47:03 AM Info Project 'confession kiosk' created successfully and added to workspace
+10/3/2023 12:47:04 AM Info Loading scenario ID: ee64f926-ff3c-463c-942d-d3429845c21f, URI: http://localhost:9098/Scenarios/ee64f926-ff3c-463c-942d-d3429845c21f/Index.html
+10/3/2023 1:20:52 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:52 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:52 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:52 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:52 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:52 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:52 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:52 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:52 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:52 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:52 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:53 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:54 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:54 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:54 AM Error Insufficient memory to continue the execution of the program.
+   於 System.Windows.Media.Composition.DUCE.Channel.SyncFlush()
+   於 System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean enableRenderTarget, Nullable`1 channelSet)
+   於 System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr lParam)
+   於 System.Windows.Interop.HwndTarget.HandleMessage(WindowMessage msg, IntPtr wparam, IntPtr lparam)
+   於 System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   於 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   於 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
+
+10/3/2023 1:20:54 AM Error 操作順利完成。
+   於 MS.Win32.UnsafeNativeMethods.CreateWindowEx(Int32 dwExStyle, String lpszClassName, String lpszWindowName, Int32 style, Int32 x, Int32 y, Int32 width, Int32 height, HandleRef hWndParent, HandleRef hMenu, HandleRef hInst, Object pvParam)
+   於 MS.Win32.HwndWrapper..ctor(Int32 classStyle, Int32 style, Int32 exStyle, Int32 x, Int32 y, Int32 width, Int32 height, String name, IntPtr parent, HwndWrapperHook[] hooks)
+   於 System.Windows.Window.EnsureHiddenWindow()
+   於 System.Windows.Window.SetTaskbarStatus()
+   於 System.Windows.Window.CreateAllStyle()
+   於 System.Windows.Window.CreateSourceWindow(Boolean duringShow)
+   於 System.Windows.Window.CreateSourceWindowDuringShow()
+   於 System.Windows.Window.SafeCreateWindowDuringShow()
+   於 System.Windows.Window.ShowHelper(Object booleanBox)
+   於 System.Windows.Window.Show()
+   於 System.Windows.Window.ShowDialog()
+   於 Microsoft.Windows.ICD.UI.Dialogs.CustomMessageBox.ShowDialog(CustomMessageBoxVM vm)
+   於 Microsoft.Windows.ICD.UI.Dialogs.CustomMessageBox.ShowMessage(String header, String message, Int32 height, Int32 width)
+   於 Microsoft.Windows.ICD.UI.Dialogs.CustomMessageBox.ShowError(String message)
+   於 Microsoft.Windows.ICD.UI.Common.ICDUIService.<>c__DisplayClass17_0.<ShowErrorMessage>b__0()
+   於 System.Windows.Threading.Dispatcher.Invoke[TResult](Func`1 callback, DispatcherPriority priority, CancellationToken cancellationToken, TimeSpan timeout)
+   於 System.Windows.Threading.Dispatcher.Invoke[TResult](Func`1 callback)
+   於 Microsoft.Windows.ICD.Common.Tools.DispatcherInvoke[T](Func`1 doWork)
+   於 Microsoft.Windows.ICD.UI.Common.ICDUIService.ShowErrorMessage(String message)
+   於 Microsoft.Windows.ICD.UI.Common.ICDUIService.ShowErrorMessage(String message, Boolean showLogLink)
+   於 Microsoft.Windows.ICD.ICDMain.HandleException(Exception exception)
+   於 Microsoft.Windows.ICD.ICDMain.ICD_UnhandledException(Object sender, DispatcherUnhandledExceptionEventArgs e)
+   於 System.Windows.Threading.Dispatcher.CatchException(Exception e)
+   於 System.Windows.Threading.Dispatcher.CatchExceptionStatic(Object source, Exception e)
+   於 System.Windows.Threading.ExceptionWrapper.CatchException(Object source, Exception e, Delegate catchHandler)
+   於 System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+   於 System.Windows.Threading.Dispatcher.LegacyInvokeImpl(DispatcherPriority priority, TimeSpan timeout, Delegate method, Object args, Int32 numArgs)
+   於 MS.Win32.HwndSubclass.SubclassWndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam)
+
+
+10/3/2023 1:34:09 AM Info Project 'confession kiosk' created successfully and added to workspace
+10/3/2023 1:34:09 AM Info Loading scenario ID: ee64f926-ff3c-463c-942d-d3429845c21f, URI: http://localhost:9098/Scenarios/ee64f926-ff3c-463c-942d-d3429845c21f/Index.html
+10/3/2023 1:35:58 AM Info Clear all Config Template answers
+10/3/2023 1:35:58 AM Info Save Config Template answers for active project
+10/3/2023 1:35:58 AM Info !ConfigureTemplate, Value: true
+10/3/2023 1:35:58 AM Info !EnableSharedPC, Value: false
+10/3/2023 1:35:58 AM Info !enableDeviceSharing_display, Value: Yes
+10/3/2023 1:35:58 AM Info !disableDeviceSharing, Value: No
+10/3/2023 1:35:58 AM Info SharedPC//EnableSharedPCMode, Value: true
+10/3/2023 1:35:58 AM Info SharedPC//AccountManagement//DeletionPolicy, Value: 2
+10/3/2023 1:35:58 AM Info SharedPC//AccountManagement//AccountModel, Value: 2
+10/3/2023 1:35:58 AM Info SharedPC//AccountManagement//DiskLevelCaching, Value: 50
+10/3/2023 1:35:58 AM Info SharedPC/AccountManagement/DiskLevelCaching, Value: 25
+10/3/2023 1:35:58 AM Info SharedPC//AccountManagement//EnableAccountManager, Value: true
+10/3/2023 1:35:58 AM Info SharedPC//ConfigureApplications, Value: true
+10/3/2023 1:35:58 AM Info SharedPC//PolicyCustomization//SetEduPolicies, Value: true
+10/3/2023 1:35:58 AM Info SharedPC//PolicyCustomization//SetPowerPolicies, Value: true
+10/3/2023 1:35:58 AM Info SharedPC//PolicyCustomization//SignInOnResume, Value: true
+10/3/2023 1:35:58 AM Info Policies//ApplicationManagement//AllowAllTrustedApps, Value: 0
+10/3/2023 1:35:58 AM Info Policies//ApplicationManagement//AllowDeveloperUnlock, Value: 0
+10/3/2023 1:35:58 AM Info Policies//Experience//AllowManualMDMUnenrollment, Value: 0
+10/3/2023 1:35:58 AM Info Policies//Security//AllowAddProvisioningPackage, Value: 0
+10/3/2023 1:35:58 AM Info Policies//Security//AllowRemoveProvisioningPackage, Value: 0
+10/3/2023 1:35:58 AM Info Policies//Update//AllowAutoUpdate, Value: 4
+10/3/2023 1:35:58 AM Info !EnableCleanPC, Value: false
+10/3/2023 1:35:58 AM Info CleanPC//CleanPCWithoutRetainingUserData, Value: 1
+10/3/2023 1:35:58 AM Info !EnableCleanPcDisplayFalse, Value: No
+10/3/2023 1:35:58 AM Info OOBE/Desktop/HideOOBE, Value: true
+10/3/2023 1:35:58 AM Info DevDetail//DNSComputerName, Value: Confession-01
+10/3/2023 1:35:58 AM Info !ConfigureTemplate, Value: true
+10/3/2023 1:35:58 AM Info !ConfigureWiFi, Value: true
+10/3/2023 1:35:58 AM Info !configureWiFi_transparent, Value: Wired
+10/3/2023 1:35:58 AM Info !SecurityType, Value: WPA2-Personal
+10/3/2023 1:35:58 AM Info ConnectivityProfiles//WLAN//WLANSetting, Value: Ely2017
+10/3/2023 1:35:58 AM Info !SecurityKey, Value: 0972480180
+10/3/2023 1:35:58 AM Info ConnectivityProfiles//WLAN//WLANSetting//Ely2017//WLANXmlSettings//SecurityType, Value: WPA2-Personal
+10/3/2023 1:35:58 AM Info ConnectivityProfiles//WLAN//WLANSetting//Ely2017//WLANXmlSettings//SecurityKey, Value: 0972480180
+10/3/2023 1:35:58 AM Info !ConfigureTemplate, Value: true
+10/3/2023 1:35:58 AM Info !domainJoin, Value: domainJoin.3
+10/3/2023 1:35:58 AM Info !bprtCredentialCacheRefresh, Value: false
+10/3/2023 1:35:58 AM Info bprtExpiry, Value: 2024-03-30T17:34:34.787Z
+10/3/2023 1:35:58 AM Info !admin_usergroup, Value: 2
+10/3/2023 1:35:58 AM Info Accounts//Users, Value: kiosk_admin
+10/3/2023 1:35:58 AM Info !admin_password, Value: 123456
+10/3/2023 1:35:58 AM Info Accounts//Users//kiosk_admin//Password, Value: 123456
+10/3/2023 1:35:58 AM Info Accounts//Users//kiosk_admin//UserGroup, Value: 2
+10/3/2023 1:35:58 AM Info !ConfigureTemplate, Value: true
+10/3/2023 1:35:58 AM Info !SetupApplications, Value: true
+10/3/2023 1:35:58 AM Info ProvisioningCommands//PrimaryContext//Command, Value: []
+10/3/2023 1:35:58 AM Info UniversalAppInstall//DeviceContextApp, Value: []
+10/3/2023 1:35:58 AM Info UniversalAppInstall//DeviceContextAppLicense, Value: []
+10/3/2023 1:35:58 AM Info Policies//ApplicationManagement//AllowAllTrustedApps, Value: 1
+10/3/2023 1:35:58 AM Info !ConfigureTemplate, Value: true
+10/3/2023 1:35:58 AM Info !SetupCertificates, Value: true
+10/3/2023 1:35:58 AM Info Certificates//RootCertificates, Value: []
+10/3/2023 1:35:58 AM Info !ConfigureTemplate, Value: true
+10/3/2023 1:35:58 AM Info !createUser, Value: true
+10/3/2023 1:35:58 AM Info !localuser_usergroup, Value: 1
+10/3/2023 1:35:58 AM Info !autoLogon, Value: true
+10/3/2023 1:35:58 AM Info SMISettings//AutoLogon//Enable, Value: 1
+10/3/2023 1:35:58 AM Info !kioskAppType, Value: Classic Windows App
+10/3/2023 1:35:58 AM Info ProvisioningCommands//PrimaryContext//Command//InstallShellLauncher//CommandLine, Value: dism /online /enable-feature /FeatureName:Client-EmbeddedShellLauncher /all
+10/3/2023 1:35:58 AM Info SMISettings//ShellLauncher//Enable, Value: eshell.exe
+10/3/2023 1:35:58 AM Info !isUniversalApp, Value: false
+10/3/2023 1:35:58 AM Info AssignedAccess//AssignedAccessSettings, Value: {"Account":"ACER", "AUMID":""}
+10/3/2023 1:35:58 AM Info Accounts//Users, Value: kiosk
+10/3/2023 1:35:58 AM Info SMISettings//AutoLogon//UserName, Value: kiosk
+10/3/2023 1:35:58 AM Info !localuser_password, Value: 123456
+10/3/2023 1:35:58 AM Info SMISettings//AutoLogon//Password, Value: 123456
+10/3/2023 1:35:58 AM Info Accounts//Users//kiosk//Password, Value: 123456
+10/3/2023 1:35:58 AM Info Accounts//Users//kiosk//UserGroup, Value: 1
+10/3/2023 1:35:58 AM Info !kioskUserName, Value: ACER
+10/3/2023 1:35:58 AM Info SMISettings//ShellLauncher//UserSpecificSettings//LocalUserSpecificSettings, Value: ACER
+10/3/2023 1:35:58 AM Info SMISettings//ShellLauncher//UserSpecificSettings//LocalUserSpecificSettings//LocalUserShellSetting//UserCustomShell, Value: D:\ELY\作品相關\＃＃松菸2023基地節\懺悔室\boot_loader.exe
+10/3/2023 1:35:58 AM Info SMISettings//ShellLauncher//UserSpecificSettings//LocalUserSpecificSettings//ACER//UserCustomShell, Value: D:\ELY\作品相關\＃＃松菸2023基地節\懺悔室\boot_loader.exe
+10/3/2023 1:35:58 AM Info SMISettings//NoLockScreen, Value: false
+10/3/2023 1:35:58 AM Info !ConfigureTemplate, Value: true
+10/3/2023 1:35:58 AM Info !tabletMode, Value: false
+10/3/2023 1:35:58 AM Info TabletMode//SignInMode, Value: 0
+10/3/2023 1:35:58 AM Info !customLogon, Value: false
+10/3/2023 1:35:58 AM Info ProvisioningCommands//PrimaryContext//Command//InstallCustomLogon//CommandLine, Value: dism /online /enable-feature /FeatureName:Client-EmbeddedLogon /all /norestart
+10/3/2023 1:35:58 AM Info SMISettings//UIVerbosityLevel, Value: 0
+10/3/2023 1:35:58 AM Info SMISettings//HideAutologonUI, Value: false
+10/3/2023 1:35:58 AM Info !enableHideAutoLogonUI, Value: Yes
+10/3/2023 1:35:58 AM Info !enableNoLockScreen, Value: Yes
+10/3/2023 1:35:58 AM Info !configPowerSettings, Value: false
+10/3/2023 1:35:58 AM Info !screenTimeout, Value: false
+10/3/2023 1:35:58 AM Info !enableScreenTimeout, Value: Yes
+10/3/2023 1:35:58 AM Info ProvisioningCommands//PrimaryContext//Command//SetACScreenTimeoutToNever//CommandLine, Value: powercfg /setacvalueindex SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
+10/3/2023 1:35:58 AM Info ProvisioningCommands//PrimaryContext//Command//SetDCScreenTimeoutToNever//CommandLine, Value: powercfg /setdcvalueindex SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
+10/3/2023 1:35:58 AM Info !sleepTimeout, Value: false
+10/3/2023 1:35:58 AM Info !enableSleepTimeout, Value: Yes
+10/3/2023 1:35:58 AM Info ProvisioningCommands//PrimaryContext//Command//SetACSleepTimeoutToNever//CommandLine, Value: powercfg /setacvalueindex SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0
+10/3/2023 1:35:58 AM Info ProvisioningCommands//PrimaryContext//Command//SetDCSleepTimeoutToNever//CommandLine, Value: powercfg /setdcvalueindex SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0
+10/3/2023 1:35:58 AM Info Start provisioning package build
+10/3/2023 1:35:58 AM Info Exporting customizations as a Provisioning Package to 'C:\Users\ACER\AppData\Local\Temp\ICD_20231003-013558-447_9676.4_152867603.1'
+10/3/2023 1:35:58 AM Info Adding runtime settings to Provisioning Package
+10/3/2023 1:35:58 AM Info CreateTempDirectory: Create directory: C:\Users\ACER\AppData\Local\Temp\ICD_20231003-013558-479_9676.4_632368225.2
+10/3/2023 1:35:58 AM Info provxml writer, path = C:\Users\ACER\AppData\Local\Temp\ICD_20231003-013558-479_9676.4_632368225.2\Prov\RunTime\0__Accounts_Users_kiosk.provxml
+10/3/2023 1:35:58 AM Info provxml writer, path = C:\Users\ACER\AppData\Local\Temp\ICD_20231003-013558-479_9676.4_632368225.2\Prov\RunTime\1__Accounts_Users_kiosk_admin.provxml
+10/3/2023 1:35:58 AM Info provxml writer, path = C:\Users\ACER\AppData\Local\Temp\ICD_20231003-013558-479_9676.4_632368225.2\Prov\RunTime\2__Policies_ApplicationManagement_AllowAllTrustedApps.provxml
+10/3/2023 1:35:58 AM Info provxml writer, path = C:\Users\ACER\AppData\Local\Temp\ICD_20231003-013558-479_9676.4_632368225.2\Prov\RunTime\3__DevDetail_DNSComputerName.provxml
+10/3/2023 1:35:58 AM Info provxml writer, path = C:\Users\ACER\AppData\Local\Temp\ICD_20231003-013558-479_9676.4_632368225.2\Prov\RunTime\4__OOBE_Desktop_HideOobe.provxml
+10/3/2023 1:35:58 AM Info provxml writer, path = C:\Users\ACER\AppData\Local\Temp\ICD_20231003-013558-479_9676.4_632368225.2\Prov\RunTime\5__ProvisioningCommands_PrimaryContext_Command_0_CommandLine.provxml
+10/3/2023 1:35:58 AM Info provxml writer, path = C:\Users\ACER\AppData\Local\Temp\ICD_20231003-013558-479_9676.4_632368225.2\Prov\RunTime\6__SMISettings_AutoLogon.provxml
+10/3/2023 1:35:58 AM Info provxml writer, path = C:\Users\ACER\AppData\Local\Temp\ICD_20231003-013558-479_9676.4_632368225.2\Prov\RunTime\7__SMISettings_HideAutologonUI.provxml
+10/3/2023 1:35:58 AM Info provxml writer, path = C:\Users\ACER\AppData\Local\Temp\ICD_20231003-013558-479_9676.4_632368225.2\Prov\RunTime\8__SMISettings_ShellLauncher.provxml
+10/3/2023 1:35:58 AM Info provxml writer, path = C:\Users\ACER\AppData\Local\Temp\ICD_20231003-013558-479_9676.4_632368225.2\Prov\RunTime\9__ConnectivityProfiles_WLAN_WLANSetting_Ely2017.provxml
+10/3/2023 1:35:58 AM Info Adding deployment settings to Provisioning Package
+10/3/2023 1:35:58 AM Info Adding file assets to Provisioning Package
+10/3/2023 1:35:58 AM Info CopyFile: Source path: C:\Users\ACER\AppData\Local\Temp\ICD_20231003-013558-746_9676.4_10065497.cat, Target path: D:\ELY\作品相關\＃＃松菸2023基地節\懺悔室\kiosk\confession kiosk.cat
+10/3/2023 1:35:58 AM Info CopyFile: Source path: C:\Users\ACER\AppData\Local\Temp\ICD_20231003-013558-447_9676.4_152867603.1, Target path: D:\ELY\作品相關\＃＃松菸2023基地節\懺悔室\kiosk\confession kiosk.ppkg
+10/3/2023 1:35:58 AM Info DeleteFile: File '' does not exist
+10/3/2023 1:35:58 AM Info DeleteFile: File 'C:\Users\ACER\AppData\Local\Temp\ICD_20231003-013558-447_9676.4_152867603.1' does not exist
+10/3/2023 1:35:58 AM Info Provisioning package build is completed with result: Success
+10/3/2023 1:35:58 AM Info Sent message to all clients for project fe66288f-4539-4c8b-9384-d22b3e223632

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WindowsCustomizations>
+  <PackageConfig xmlns="urn:schemas-Microsoft-com:Windows-ICD-Package-Config.v1.0">
+    <ID>{fe66288f-4539-4c8b-9384-d22b3e223632}</ID>
+    <Name>confession kiosk</Name>
+    <Version>1.1</Version>
+    <OwnerType>OEM</OwnerType>
+    <Rank>0</Rank>
+    <Notes></Notes>
+  </PackageConfig>
+  <Settings xmlns="urn:schemas-microsoft-com:windows-provisioning">
+    <Customizations>
+      <Common>
+        <Accounts>
+          <Users>
+            <User UserName="kiosk">
+              <Password>123456</Password>
+              <UserGroup>Standard Users</UserGroup>
+            </User>
+            <User UserName="kiosk_admin">
+              <Password>123456</Password>
+              <UserGroup>Administrators</UserGroup>
+            </User>
+          </Users>
+        </Accounts>
+        <ConnectivityProfiles>
+          <WLAN>
+            <WLANSetting>
+              <WLANConfig SSID="Ely2017">
+                <WLANXmlSettings>
+                  <SecurityKey>0972480180</SecurityKey>
+                  <SecurityType>WPA2-Personal</SecurityType>
+                </WLANXmlSettings>
+              </WLANConfig>
+            </WLANSetting>
+          </WLAN>
+        </ConnectivityProfiles>
+        <DevDetail>
+          <DNSComputerName>Confession-01</DNSComputerName>
+        </DevDetail>
+        <OOBE>
+          <Desktop>
+            <HideOobe>True</HideOobe>
+          </Desktop>
+        </OOBE>
+        <Policies>
+          <ApplicationManagement>
+            <AllowAllTrustedApps>Yes</AllowAllTrustedApps>
+          </ApplicationManagement>
+        </Policies>
+        <ProvisioningCommands>
+          <PrimaryContext>
+            <Command>
+              <CommandConfig Name="InstallShellLauncher">
+                <CommandLine>dism /online /enable-feature /FeatureName:Client-EmbeddedShellLauncher /all</CommandLine>
+              </CommandConfig>
+              <CommandConfig Name="0" />
+            </Command>
+          </PrimaryContext>
+        </ProvisioningCommands>
+        <SMISettings>
+          <AutoLogon>
+            <Enable>ENABLE</Enable>
+            <Password>123456</Password>
+            <UserName>kiosk</UserName>
+          </AutoLogon>
+          <HideAutologonUI>False</HideAutologonUI>
+          <ShellLauncher>
+            <Enable>ENABLE</Enable>
+            <UserSpecificSettings>
+              <LocalUserSpecificSettings>
+                <LocalUserShellSetting Username="ACER">
+                  <UserCustomShell>D:\ELY\\2023\\boot_loader.exe</UserCustomShell>
+                </LocalUserShellSetting>
+                <LocalUserShellSetting Username="LocalUserShellSetting">
+                  <UserCustomShell>D:\ELY\\2023\\boot_loader.exe</UserCustomShell>
+                </LocalUserShellSetting>
+              </LocalUserSpecificSettings>
+            </UserSpecificSettings>
+          </ShellLauncher>
+        </SMISettings>
+      </Common>
+    </Customizations>
+  </Settings>
+</WindowsCustomizations>

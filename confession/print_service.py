@@ -1,8 +1,9 @@
 from fpdf import FPDF  # for pdf creation
 import win32print
 import win32api
+import win32gui
+import win32con
 import subprocess
-import time
 import pygetwindow as gw
 
 class newPDF(FPDF):
@@ -190,13 +191,16 @@ def print_service(print_data_queue, stop_queue):
             # pdf.output(pdf_filename)
             # print_pdf_silently(pdf_filename)
 
-            # window_title = "EPSON LW-600P"  # Replace with the actual title of your window.
+            window_title = "EPSON LW-600P"  # Replace with the actual title of your window.
 
-            # try:
-            #     window = gw.getWindowsWithTitle(window_title)[0]  # Get the first window with the title
-            #     if window:
-            #         window.minimize()
-            # except IndexError:
-            #     print(f"No window with title {window_title} found")
-            # except Exception as e:
-            #     print(f"An error occurred: {e}")
+            try:
+                hwnd = win32gui.FindWindow(None, window_title)  # Get the first window with the title
+                if hwnd != 0:
+                    win32gui.ShowWindow(hwnd, win32con.SW_HIDE)
+                else:
+                    print(f'Window with title {window_title} not found!')
+            except Exception as e:
+                print(f"An error occurred: {e}")
+
+                
+

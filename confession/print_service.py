@@ -1,7 +1,9 @@
 from fpdf import FPDF  # for pdf creation
 import win32print
 import win32api
-
+import subprocess
+import time
+import pygetwindow as gw
 
 class newPDF(FPDF):
     def __init__(self, orientation="P", unit="mm", format="A4"):
@@ -101,6 +103,20 @@ class newPDF(FPDF):
         except:
             print("printed")
 
+def print_pdf_silently(file_path):
+    try:
+        sumatra_path = "C:\\Program Files\\SumatraPDF\\SumatraPDF.exe"  # Update with your SumatraPDF path
+        printer_name = win32print.GetDefaultPrinter()  # Gets the default printer
+        
+        command = [sumatra_path, "-print-to", printer_name, "-print-settings", "noscale", "-exit-when-done", "-silent", file_path]
+        subprocess.run(command, check=True)
+        
+        print(f"Printed {file_path} to {printer_name}")
+        
+    except Exception as e:
+        print(f"Failed to print {file_path}. Error: {e}")
+
+
 def print_service(print_data_queue, stop_queue):
     while True:
         while not print_data_queue.empty():
@@ -149,4 +165,38 @@ def print_service(print_data_queue, stop_queue):
                 )
             except:
                 print('PRINTED.')
-            break
+            # the_words = print_data_queue.get()
+            # stop_queue.put("STOP")
+            # print("PRINT following: " + the_words)
+            # pdf = newPDF("P",
+            #             "pt")  # P(ortrait), points size ref, Letter-size paper
+            # pdf.add_page()  # add a blank page to start
+            # pdf.add_font("msjh", "", "微軟正黑體.ttf", 1)
+            # pdf.image("assets/top.png", x=None, y=None, w=50, h=15, type="",
+            #         link="")
+            # pdf.set_font("msjh",
+            #             size=2)  # optional here, but useful if most text is plain
+            # pdf.write(h=2, txt="\n")
+            # hello_string = the_words
+            # pdf.set_font("msjh", size=10)
+            # pdf.write(h=14, txt=hello_string)
+            # pdf.set_font("msjh", size=10)
+            # pdf.write(h=10, txt="\n")
+            # pdf.image("assets/bottom.png", x=None, y=None, w=50, h=15,
+            #         type="",
+            #         link="")
+            # # output the created page(s) as a PDF file
+            # pdf_filename = "storage/hello_world1.pdf"
+            # pdf.output(pdf_filename)
+            # print_pdf_silently(pdf_filename)
+
+            # window_title = "EPSON LW-600P"  # Replace with the actual title of your window.
+
+            # try:
+            #     window = gw.getWindowsWithTitle(window_title)[0]  # Get the first window with the title
+            #     if window:
+            #         window.minimize()
+            # except IndexError:
+            #     print(f"No window with title {window_title} found")
+            # except Exception as e:
+            #     print(f"An error occurred: {e}")

@@ -1,10 +1,10 @@
 import PySimpleGUI as sg
 import pyaudio
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import ctypes
 
 # Initialize variables and objects
 _VARS = {'window': False, 'stream': False, 'line': None, 'fig_agg': None}
@@ -12,7 +12,7 @@ screen_width, screen_height = sg.Window.get_screen_size()
 screen_width = screen_width
 screen_height = screen_height
 canvas_width = screen_width + 2800
-canvas_height = screen_height - 60
+canvas_height = screen_height - 70
 
 # Initialize PySimpleGUI
 AppFont = 'Any 16'
@@ -22,7 +22,7 @@ layout = [
     [sg.ProgressBar(4000, orientation='h', size=(20, 20), key='-PROG-')],
     [sg.Button('Listen', font=AppFont), sg.Button('Stop', font=AppFont, disabled=True), sg.Button('Exit', font=AppFont)]
 ]
-_VARS['window'] = sg.Window('    ', layout, no_titlebar=True, finalize=True, location=(0, 0), size=(screen_width, screen_height), keep_on_top=True, alpha_channel=0.5, resizable=True)
+_VARS['window'] = sg.Window('Wave Form', layout, no_titlebar=True, finalize=True, location=(0, 0), size=(screen_width, screen_height), keep_on_top=False, alpha_channel=0.5, resizable=True)
 
 # Initialize matplotlib figure and Pyaudio
 # fig, ax = plt.subplots(figsize=(canvas_width/80, canvas_height/110), dpi=100)
@@ -62,14 +62,16 @@ def callback(in_data, frame_count, time_info, status):
 
 def listen():
     _VARS['stream'] = pAud.open(format=pyaudio.paInt16,
-                               channels=1,
-                               rate=RATE,
-                               input=True,
-                               input_device_index=4,
-                               frames_per_buffer=CHUNK,
-                               stream_callback=callback)
+                            channels=1,
+                            rate=RATE,
+                            input=True,
+                            input_device_index=3,
+                            frames_per_buffer=CHUNK,
+                            stream_callback=callback)
     _VARS['stream'].start_stream()
 
+listen()
+ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
 # Event Loop
 while True:
     event, values = _VARS['window'].read()

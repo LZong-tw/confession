@@ -2,10 +2,11 @@ import cv2
 import pygame
 import numpy as np
 import PySimpleGUI as sg
+import ctypes
 
 # Initialize Pygame
 pygame.init()
-
+ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
 # Initialize the screen
 screen_width, screen_height = sg.Window.get_screen_size()
 size = (screen_width, screen_height)

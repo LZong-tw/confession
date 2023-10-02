@@ -4,7 +4,6 @@ import time
 import random
 from pydub import AudioSegment
 
-
 def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
               filename_queue, voice_count_queue, block_queue):
     while True:
@@ -106,8 +105,8 @@ def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
             audio = AudioSegment.from_file('storage/' + now + '.mp3')
             # Get the duration in milliseconds and convert it to seconds
             duration = len(audio)
-            time.sleep((duration - 1000) / 1000)
+            time.sleep(abs((duration - 1000) / 1000))
             print("END")
-            while not block_queue.empty():
+            screen_queue.put("Screen off")
+            if not block_queue.empty():
                 block_queue.get()
-                screen_queue.put("Screen off")

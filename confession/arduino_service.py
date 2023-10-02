@@ -2,8 +2,8 @@ import keyboard
 import serial
 
 
-def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, block_queue, port="COM5"):
-    ser = False
+def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, block_queue, port="COM3"):
+    ser = True
     # Define the serial port and baud
     if ser:
         try:
@@ -16,15 +16,7 @@ def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, 
         if ser:
             # Read data from the Arduino
             data = ser.readline().decode().strip()
-        else:
-            # Read data from the keyboard
-            if keyboard.is_pressed('k'):
-                data = "OPEN"
-            elif keyboard.is_pressed('l'):
-                data = "CLOSE"
-            else:
-                data = "CLOSE"
-        if data == "OPEN":
+        if data == "OPEN" or keyboard.is_pressed('k'):
             print("Door opened")
             is_open = True
             if door_queue_for_audio.empty():
@@ -33,17 +25,7 @@ def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, 
                 door_queue_for_screen.put("OPEN")
             # time.sleep(10)
             # block_queue.put("BLOCK")
-        elif (data == "CLOSE"):
+        elif (data == "CLOSE") or keyboard.is_pressed('l'):
             is_open = False
             # print("Door closed")
-        else:
-            # print("YOOO")
-            # if door_queue_for_audio.empty() and data == "OPEN" and not is_open:
-            #     is_open = True
-            #     door_queue_for_audio.put("OPEN")
-            # if door_queue_for_screen.empty() and data == "OPEN" and not is_open:
-            #     is_open = True
-            #     door_queue_for_screen.put("OPEN")
-            # else:
-            is_open = False
 

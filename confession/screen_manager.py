@@ -3,8 +3,10 @@ import keyboard
 import win32api
 import win32con
 import win32gui
+import pygetwindow as gw
 
-def screen_manager(door_queue_for_screen, screen_queue, welcome_queue, ambient_queue):
+def screen_manager(door_queue_for_screen, screen_queue, welcome_queue, ambient_queue, audio_wave_from_queue):
+    is_open = False
     def screen_on(fade_duration=3000):
         clock = pygame.time.Clock()
         fuchsia = (255, 0, 128)  # Transparency color
@@ -53,7 +55,11 @@ def screen_manager(door_queue_for_screen, screen_queue, welcome_queue, ambient_q
     pygame.init()
     screen_width = 1920
     screen_height = 1080
-    screen = pygame.display.set_mode((screen_width, screen_height), pygame.FULLSCREEN)
+    screen = pygame.display.set_mode((screen_width, screen_height), pygame.NOFRAME)
+    pygame.display.set_caption("Always on Top Window")
+    # Make the window always-on-top
+    window = gw.getWindowsWithTitle('Always on Top Window')[0]
+    window.alwaysOnTop = True
     running = True
 
     while running:
@@ -64,8 +70,10 @@ def screen_manager(door_queue_for_screen, screen_queue, welcome_queue, ambient_q
 
         if not door_queue_for_screen.empty():
             content = door_queue_for_screen.get()
-            if content == "OPEN":
+            if content == "OPEN" and not is_open:
+                audio_wave_from_queue.put('ON')
                 screen_on()
+                is_open = True
                 if welcome_queue.empty():
                     welcome_queue.put("welcome")
                     ambient_queue.put("START")
@@ -74,5 +82,7 @@ def screen_manager(door_queue_for_screen, screen_queue, welcome_queue, ambient_q
 
         if not screen_queue.empty():
             content = screen_queue.get()
-            if content == "Screen off":
+            if content == "Screen off" and is_open:
+                audio_wave_from_queue.get()
                 screen_off()
+                is_open = False

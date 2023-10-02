@@ -1,8 +1,18 @@
 import speech_recognition as SpRe
-import time
+import logging
+import os
+from datetime import datetime
+
+# Setting up logging
+log_dir = 'storage/logs'
+os.makedirs(log_dir, exist_ok=True)  # Create log directory if it doesn't exist
+filename = datetime.now().strftime('%Y%m%d%H%M%S') + '.txt'
+log_file = os.path.join(log_dir, filename)
+
+logging.basicConfig(filename=log_file, level=logging.ERROR)
 
 def recognition_service(door_queue_for_audio, stt_result_queue, recognition_queue, ambient_queue, block_queue):
-    microphone = SpRe.Microphone(device_index=1)
+    microphone = SpRe.Microphone(device_index=3)
     recognition = SpRe.Recognizer()
 
     with microphone as source:
@@ -11,13 +21,6 @@ def recognition_service(door_queue_for_audio, stt_result_queue, recognition_queu
                 print("Ambient queue get: " + ambient_queue.get())
                 recognition.adjust_for_ambient_noise(source, duration=2)
                 print("Ambient completed.")
-            # if not door_queue_for_audio.empty() and block_queue.empty():
-            #     content = door_queue_for_audio.get()
-            #     print("Audio service get door_queue_for_audio: " + content)
-            #     # time.sleep(10)
-            #     block_queue.put("BLOCK")
-            #     while not door_queue_for_audio.empty():
-            #         print("CLEAR DOOR OPEN QUEUE FOR AUDIO: " + door_queue_for_audio.get())
 
             if not recognition_queue.empty():
                 content = recognition_queue.get()
@@ -32,7 +35,9 @@ def recognition_service(door_queue_for_audio, stt_result_queue, recognition_queu
                         print('recognizing...')
                         content = recognition.recognize_google(audioData, language='zh-tw')
                     except Exception as e:
-                        print(str(e))
-                        content = '請再說一遍!!'
+                        error_message = str(e)
+                        print(error_message)
+                        logging.error(error_message)
+                        content = '我覺得沒有意義，請給我一段智慧之語'
                 stt_result_queue.put(content)
 

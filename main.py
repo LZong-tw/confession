@@ -2,6 +2,8 @@ import confession
 import audio_wave_form
 import ctypes
 from multiprocessing import Process, Queue
+import subprocess
+import time
 
 
 def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, block_queue, port="COM3"):
@@ -54,6 +56,11 @@ def audio_wave_form_func(audio_wave_from_queue):
 
 
 if __name__ == '__main__':
+    subprocess.Popen(['python', 'video_daemon.py'])
+    time.sleep(3)
+    subprocess.Popen(['python', 'audio_wave_form_daemon.py'])
+    time.sleep(3)
+
     door_queue_for_screen = Queue()
     door_queue_for_audio = Queue()
     print_data_queue = Queue()

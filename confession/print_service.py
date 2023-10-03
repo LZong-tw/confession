@@ -190,17 +190,4 @@ def print_service(print_data_queue, stop_queue):
             # pdf_filename = "storage/hello_world1.pdf"
             # pdf.output(pdf_filename)
             # print_pdf_silently(pdf_filename)
-
-            window_title = "EPSON LW-600P"  # Replace with the actual title of your window.
-
-            try:
-                hwnd = win32gui.FindWindow(None, window_title)  # Get the first window with the title
-                if hwnd != 0:
-                    win32gui.ShowWindow(hwnd, win32con.SW_HIDE)
-                else:
-                    print(f'Window with title {window_title} not found!')
-            except Exception as e:
-                print(f"An error occurred: {e}")
-
-                
-
+            

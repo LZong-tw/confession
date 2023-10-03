@@ -8,6 +8,30 @@ from matplotlib.figure import Figure
 import pyaudio
 from scipy.interpolate import interp1d
 
+def select_audio_device(name_substring):
+    p = pyaudio.PyAudio()
+    selected_device_index = None
+    
+    try:
+        # Get count of audio devices
+        info = p.get_host_api_info_by_index(0)
+        numdevices = info.get('deviceCount')
+        
+        # Loop through all available devices
+        for i in range(0, numdevices):
+            if (p.get_device_info_by_host_api_device_index(0, i).get('maxInputChannels')) > 0:
+                device_name = p.get_device_info_by_host_api_device_index(0, i).get('name')
+                print(f"Input Device id {i} - {device_name}")
+                
+                # Check if device name contains the desired substring
+                if name_substring.lower() in device_name.lower():
+                    print(f"Selected device: {device_name}")
+                    selected_device_index = i
+                    break
+    except:
+        print("?????????")
+    
+    return selected_device_index
 
 class WaveFormApp(QMainWindow):
     def __init__(self, screen_width, screen_height):
@@ -89,11 +113,17 @@ class WaveFormApp(QMainWindow):
         return in_data, pyaudio.paContinue
 
     def on_listen(self):
+        # Example usage
+        selected_device_index = select_audio_device("AMD")
+        if selected_device_index is not None:
+            print(f"WAVE FORM: Device with index {selected_device_index} is selected.")
+        else:
+            print("WAVE FORM: No device with the desired name was found.")
         self.stream = self.pAud.open(format=pyaudio.paInt16,
                                      channels=1,
                                      rate=44100,
                                      input=True,
-                                     input_device_index=1,
+                                     input_device_index=selected_device_index,
                                      frames_per_buffer=1024,
                                      stream_callback=self.callback)
         self.stream.start_stream()

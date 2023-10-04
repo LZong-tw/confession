@@ -16,7 +16,7 @@ def find_arduino_port():
 
 
 def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, block_queue, port="COM3"):
-    ser = True
+    ser = False
     port = find_arduino_port()
     # Define the serial port and baud
     if ser:
@@ -30,7 +30,8 @@ def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, 
         if ser:
             # Read data from the Arduino
             data = ser.readline().decode().strip()
-        if data == "OPEN" or keyboard.is_pressed('k'):
+        # if data == "OPEN" or keyboard.is_pressed('k'):
+        if keyboard.is_pressed('k'):
             print("Door opened")
             is_open = True
             if door_queue_for_audio.empty():
@@ -39,7 +40,8 @@ def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, 
                 door_queue_for_screen.put("OPEN")
             # time.sleep(10)
             # block_queue.put("BLOCK")
-        elif (data == "CLOSE") or keyboard.is_pressed('l'):
+        # elif (data == "CLOSE") or keyboard.is_pressed('l'):
+        elif keyboard.is_pressed('l'):
             is_open = False
             # print("Door closed")
 

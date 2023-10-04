@@ -1,9 +1,23 @@
 import keyboard
 import serial
+import serial.tools.list_ports
+
+def find_arduino_port():
+    arduino_ports = [
+        p.device
+        for p in serial.tools.list_ports.comports()
+        if 'Arduino' in p.description  # this part might vary depending on your OS and the Arduino description
+    ]
+    if not arduino_ports:
+        raise IOError("No Arduino found")
+    if len(arduino_ports) > 1:
+        print('Multiple Arduinos found - using the first one')    
+    return arduino_ports[0]
 
 
 def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, block_queue, port="COM3"):
     ser = True
+    port = find_arduino_port()
     # Define the serial port and baud
     if ser:
         try:

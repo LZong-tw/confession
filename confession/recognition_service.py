@@ -45,6 +45,7 @@ def recognition_service(door_queue_for_audio, stt_result_queue, recognition_queu
         print(f"RECOGNITION SERVICE Device with index {selected_device_index} is selected.")
     else:
         print("RECOGNITION SERVICE No device with the desired name was found.")
+        selected_device_index = 0
     microphone = SpRe.Microphone(device_index=selected_device_index)
     recognition = SpRe.Recognizer()
 

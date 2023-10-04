@@ -65,7 +65,8 @@ class newPDF(FPDF):
             elif unit == "in":
                 self.k = 72.0
             else:
-                self.error("Incorrect unit: " + unit)
+                # self.error("Incorrect unit: " + unit)
+                print()
             # Page format
             self.fw_pt = 68 * self.k
             self.fh_pt = 150 * self.k
@@ -82,7 +83,8 @@ class newPDF(FPDF):
                 self.w_pt = self.fh_pt
                 self.h_pt = self.fw_pt
             else:
-                self.error("Incorrect orientation: " + orientation)
+                # self.error("Incorrect orientation: " + orientation)
+                print()
             self.cur_orientation = self.def_orientation
             self.w = self.w_pt / self.k
             self.h = self.h_pt / self.k
@@ -146,7 +148,7 @@ def print_service(print_data_queue, stop_queue):
                 pdf_filename = "storage/hello_world1.pdf"
                 pdf.output(pdf_filename)
                 # finally, print the PDF file to the printer
-                GHOSTSCRIPT_PATH = "C:\\Program Files\\gs\\gs10.01.1\\bin\\gswin64.exe"
+                GHOSTSCRIPT_PATH = "C:\\Program Files\\gs\\gs10.02.0\\bin\\gswin64.exe"
                 GSPRINT_PATH = "C:\\Program Files\\Ghostgum\\gsview\\gsprint.exe"
 
                 # YOU CAN PUT HERE THE NAME OF YOUR SPECIFIC PRINTER INSTEAD OF DEFAULT

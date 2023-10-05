@@ -90,7 +90,7 @@ class newPDF(FPDF):
             self.h = self.h_pt / self.k
             # Page margins (1 cm)
             margin = 0
-            self.set_margins(8, 12)
+            self.set_margins(8, 6)
             # Interior cell margin (1 mm)
             self.c_margin = 0
             # line width (0.2 mm)

@@ -108,5 +108,9 @@ def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
             time.sleep(abs((duration - 1000) / 1000))
             print("END")
             screen_queue.put("Screen off")
-            if not block_queue.empty():
-                block_queue.get()
+            while not block_queue.empty():
+                print("clearing block queue" + block_queue.get())
+            while not screen_queue.empty():
+                print("clearing screen queue" + screen_queue.get())
+            while not stop_queue.empty():
+                print("clearing stop queue" + stop_queue.get())

@@ -54,6 +54,9 @@ def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
             if content == "STOP SUPERVISOR":
                 print("STOP QUEUE TRIGGERED: " + content)
                 response_texts = random.choice(default)
+            elif content == "FINISHED":
+                print("Gracefully end.")
+                continue
             else:                
                 response_texts = res
                 if len(response_texts) > 75:
@@ -114,3 +117,4 @@ def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
                 print("clearing screen queue" + screen_queue.get())
             while not stop_queue.empty():
                 print("clearing stop queue" + stop_queue.get())
+            stop_queue.put("FINISHED")

@@ -40,8 +40,7 @@ def select_audio_device(name_substring):
 
 def recognition_service(door_queue_for_audio, stt_result_queue, recognition_queue, ambient_queue, block_queue):
     # Example usage
-    # selected_device_index = select_audio_device("éº¥å…‹é¢¨")
-    selected_device_index = select_audio_device("AMD")
+    selected_device_index = select_audio_device("USB Audio")
     if selected_device_index is not None:
         print(f"RECOGNITION SERVICE Device with index {selected_device_index} is selected.")
     else:
@@ -64,8 +63,8 @@ def recognition_service(door_queue_for_audio, stt_result_queue, recognition_queu
                 if content == "START RECOGNITION":
                     try:
                         print('start listening...')
-                        audioData = recognition.listen(source, timeout=3,
-                                                       phrase_time_limit=6)
+                        audioData = recognition.listen(source, timeout=8,
+                                                       phrase_time_limit=8)
                         print('end')
                         print('recognizing...')
                         content = recognition.recognize_google(audioData, language='zh-tw')

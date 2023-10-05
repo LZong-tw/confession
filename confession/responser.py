@@ -56,7 +56,7 @@ def responser(screen_queue, reply_queue, stop_queue, print_data_queue,
                 response_texts = random.choice(default)
             else:                
                 response_texts = res
-                if len(response_texts) > 40:
+                if len(response_texts) > 75:
                     print("Original response too long: " + response_texts)
                     response_texts = random.choice(default)
                 if '「' in response_texts or '」' in response_texts or '『' in response_texts or '』' in response_texts or '"' in response_texts or "'" in response_texts:

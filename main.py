@@ -11,7 +11,7 @@ import sys
 from datetime import datetime
 
 class Logger(object):
-    def __init__(self, filename="Default.log"):
+    def __init__(self, filename="storage/logs/Default.log"):
         self.terminal = sys.stdout
         self.log = open(filename, "a")
 
@@ -96,9 +96,9 @@ if __name__ == '__main__':
     time.sleep(3)
     set_volume()
     today_string = datetime.today().strftime('%Y-%m-%d')
-    sys.stdout = Logger(today_string + ".log")
+    sys.stdout = Logger("storage/logs/" + today_string + ".log")
     sys.stderr = sys.stdout
-    print(f"This will be logged to {today_string}.log")
+    print(f"This will be logged to storage/logs/{today_string}.log")
 
     door_queue_for_screen = Queue()
     door_queue_for_audio = Queue()

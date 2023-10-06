@@ -4,7 +4,41 @@ import ctypes
 from multiprocessing import Process, Queue
 import subprocess
 import time
+from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
+from ctypes import cast, POINTER
+from comtypes import CLSCTX_ALL
+import sys
+from datetime import datetime
 
+class Logger(object):
+    def __init__(self, filename="Default.log"):
+        self.terminal = sys.stdout
+        self.log = open(filename, "a")
+
+    def write(self, message):
+        # Generate the current timestamp
+        current_timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self.terminal.write(f"{current_timestamp} - {message}\n")
+        self.log.write(f"{current_timestamp} - {message}\n")
+        self.flush()
+
+    def flush(self):
+        self.terminal.flush()
+        self.log.flush()
+
+    def __del__(self):
+        self.log.close()
+
+def set_volume(max_volume=True):
+    devices = AudioUtilities.GetSpeakers()
+    interface = devices.Activate(
+        IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+    volume = cast(interface, POINTER(IAudioEndpointVolume))
+
+    if max_volume:
+        volume.SetMasterVolumeLevelScalar(1, None)  # set volume to 100%
+    else:
+        volume.GetMasterVolumeLevelScalar()
 
 def arduino_service(door_queue_for_screen, door_queue_for_audio, welcome_queue, block_queue, port="COM3"):
     confession.arduino_service(door_queue_for_screen,
@@ -60,6 +94,11 @@ if __name__ == '__main__':
     time.sleep(3)
     subprocess.Popen(['python', 'audio_wave_form_daemon.py'])
     time.sleep(3)
+    set_volume()
+    today_string = datetime.today().strftime('%Y-%m-%d')
+    sys.stdout = Logger(today_string + ".log")
+    sys.stderr = sys.stdout
+    print(f"This will be logged to {today_string}.log")
 
     door_queue_for_screen = Queue()
     door_queue_for_audio = Queue()

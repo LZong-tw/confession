@@ -1,0 +1,68 @@
+sequenceDiagram
+  participant ArduinoService
+  participant WelcomeBlock
+  participant AmbientQueue
+  participant RecognitionService
+  participant ScreenManager
+  participant Responser
+  participant Supervisor
+  participant Thinker
+  participant PrintService
+
+  ArduinoService->>WelcomeBlock: 記錄開關狀態
+  ArduinoService->>DoorQueueForScreen: 寫入事件
+  WelcomeBlock->>AmbientQueue: 清除鎖定
+  WelcomeBlock->>RecognitionService: 背景辨識
+  RecognitionService->>WelcomeBlock: 寫入鎖定
+  WelcomeBlock->>RecognitionService: 確認無鎖定
+  WelcomeBlock->>PrintService: 列印歡迎詞
+  WelcomeBlock->>ScreenManager: 開啟螢幕
+  ScreenManager->>ScreenQueue: 寫入事件
+  Responser->>WelcomeQueue: 讀取事件
+  Responser->>Thinker: 使用 GPT-4 取得回應
+  Thinker->>Responser: 寫入回應
+  Responser->>WelcomeQueue: 寫入事件
+  Supervisor->>Responser: 監控回應速度
+  Supervisor->>WelcomeQueue: 寫入事件
+  WelcomeBlock->>Responser: 讀取回應
+  Responser->>WelcomeBlock: 儲存回應
+  WelcomeBlock->>PrintService: 列印回應
+  RecognitionService->>RecognizedDataQueue: 寫入辨識結果
+  PrintService->>PrintDataQueue: 寫入資料
+  PrintService->>VoiceCountQueue: 寫入資料
+  PrintService->>StopQueue: 寫入事件
+  RecognitionService->>ScreenManager: 關閉螢幕
+  ScreenManager->>ScreenQueue: 寫入事件
+  Supervisor->>RecognitionService: 讀取事件
+  Supervisor->>RecognitionService: 寫入事件
+  RecognitionService->>RecognitionBridge: 寫入現在時間
+  RecognitionBridge->>RecognitionQueue: 寫入事件
+
+
+  ArduinoService->>DoorQueueForScreen: 寫入事件
+  WelcomeBlock->>AmbientQueue: 清除鎖定
+  WelcomeBlock->>RecognitionService: 背景辨識
+  RecognitionService->>WelcomeBlock: 寫入鎖定
+  WelcomeBlock->>RecognitionService: 確認無鎖定
+  WelcomeBlock->>PrintService: 列印歡迎詞
+  WelcomeBlock->>ScreenManager: 開啟螢幕
+  ScreenManager->>ScreenQueue: 寫入事件
+  Responser->>WelcomeQueue: 讀取事件
+  Responser->>Thinker: 使用 GPT-4 取得回應
+  Thinker->>Responser: 寫入回應
+  Responser->>WelcomeQueue: 寫入事件
+  Supervisor->>Responser: 監控回應速度
+  Supervisor->>WelcomeQueue: 寫入事件
+  WelcomeBlock->>Responser: 讀取回應
+  Responser->>WelcomeBlock: 儲存回應
+  WelcomeBlock->>PrintService: 列印回應
+  RecognitionService->>RecognizedDataQueue: 寫入辨識結果
+  PrintService->>PrintDataQueue: 寫入資料
+  PrintService->>VoiceCountQueue: 寫入資料
+  PrintService->>StopQueue: 寫入事件
+  ScreenManager->>ScreenQueue: 寫入事件
+  Supervisor->>RecognitionService: 讀取事件
+  Supervisor->>RecognitionService: 寫入事件
+  RecognitionService->>RecognitionBridge: 寫入現在時間
+  RecognitionBridge->>RecognitionQueue: 寫入事件
+  RecognitionService->>ScreenManager: 關閉螢幕

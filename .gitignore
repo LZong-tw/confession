@@ -5,3 +5,5 @@
 背景錄像/
 unins000.dat
 unins000.exe
+
+storage/logs/*.log

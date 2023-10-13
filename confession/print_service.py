@@ -103,7 +103,7 @@ class newPDF(FPDF):
             self.set_compression(1)
             # Set default PDF version number
             self.pdf_version = "1.3"
-        except:
+        except Exception as e:
             print("printed")
 
 def print_pdf_silently(file_path):
@@ -166,30 +166,5 @@ def print_service(print_data_queue, stop_queue):
                     ".",
                     0,
                 )
-            except:
+            except Exception as e:
                 print('PRINTED.')
-            # the_words = print_data_queue.get()
-            # stop_queue.put("STOP")
-            # print("PRINT following: " + the_words)
-            # pdf = newPDF("P",
-            #             "pt")  # P(ortrait), points size ref, Letter-size paper
-            # pdf.add_page()  # add a blank page to start
-            # pdf.add_font("msjh", "", "微軟正黑體.ttf", 1)
-            # pdf.image("assets/top.png", x=None, y=None, w=50, h=15, type="",
-            #         link="")
-            # pdf.set_font("msjh",
-            #             size=2)  # optional here, but useful if most text is plain
-            # pdf.write(h=2, txt="\n")
-            # hello_string = the_words
-            # pdf.set_font("msjh", size=10)
-            # pdf.write(h=14, txt=hello_string)
-            # pdf.set_font("msjh", size=10)
-            # pdf.write(h=10, txt="\n")
-            # pdf.image("assets/bottom.png", x=None, y=None, w=50, h=15,
-            #         type="",
-            #         link="")
-            # # output the created page(s) as a PDF file
-            # pdf_filename = "storage/hello_world1.pdf"
-            # pdf.output(pdf_filename)
-            # print_pdf_silently(pdf_filename)
-            
